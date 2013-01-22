@@ -1,0 +1,177 @@
+---
+layout: nil
+---
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hex Conversion Practice</title>
+		<style type='text/css'>
+			body {
+				background-color: #eee;
+				font-family: sans-serif;
+				font-size: 1.5em;
+			}
+
+			.stage {
+				padding-top: 0.5em;
+			}
+
+			input, button {
+				font-size: inherit;
+			}
+
+			input.narrow {
+				width: 4em;
+			}
+
+			label.fixed {
+				width: 5em;
+				display: inline-block;
+			}
+
+			#main {
+				max-width: 15em;
+				margin: auto;
+				margin-top: 1em;
+			}
+
+			#lbl_debug {
+				padding-top: 1em;
+				display: inline-block;
+				color: #888;
+			}
+
+			tr:nth-child(2) td:nth-child(4n-3) {
+				background-color: #ccc;
+			}
+
+			td {
+				padding: 0.25em;
+				text-align: center;
+			}
+
+			footer {
+				font-size: 0.8em;
+				position: absolute;
+				bottom: 0;
+				height: 3em;
+			}
+		</style>
+		<script type='text/javascript'>
+			var LIMIT = 8;
+			var current_number = 0;
+
+			function gen_random() {
+				// Generate a number between 0 and 2**LIMIT
+				gen_core( Math.floor(Math.random()*Math.pow(2, LIMIT)) );
+			}
+
+			function gen_decimal() {
+				// Ask for a decimal number
+				var num;
+				do {
+					num = Number(prompt("Please enter a number (0-" + 
+						(Math.pow(2, LIMIT)-1) + ')'));
+				} while( !(num >= 0 && num < Math.pow(2, LIMIT)) )
+				gen_core(num);
+			}
+
+			function gen_core(num) {
+				// Convert the number to binary and put it in the table cells
+				var id = '';
+				var element;
+				var binary_string = num.toString(2);
+
+				// Reverse the string, so that the indices and places match
+				var binary_array = binary_string.split("").reverse();
+
+				for( var i = 0; i < LIMIT; i++ ) {
+					id = 'digit_' + i;
+					element = document.getElementById(id);
+
+					if( binary_array[i] ) {
+						element.innerHTML = binary_array[i];
+					} else {
+						element.innerHTML = '0';
+					}
+				}
+
+				// So we can check the answer more easily later
+				current_number = num;
+
+				// Debugging info
+				/*document.getElementById('lbl_debug').innerHTML = 
+					num + ' ' + num.toString(2) + ' ' + num.toString(16);*/
+			}
+
+			function check_hex() {
+				check_core('hex', 16);
+			}
+
+			function check_decimal() {
+				check_core('dec', 10);
+			}
+
+			function check_core(id, base) {
+				var val = document.getElementById(id).value.toLowerCase();
+				if( val == current_number.toString(base).toLowerCase() ) {
+					alert("Correct");
+				} else {
+					alert("Incorrect");
+				}
+			}
+		</script>
+		{% include track.html %}
+	</head>
+	<body>
+		<div id='main'>
+			<div class='stage'>
+				<button id='btn_random'
+					onclick='gen_random();'>Random number</button>
+				<button id='btn_decimal'
+					onclick='gen_decimal();'>Input a decimal number</button>
+			</div>
+
+			<div class='stage'>
+				<table>
+					<tr>
+						<td>2<sup>7</sup></td>
+						<td>2<sup>6</sup></td>
+						<td>2<sup>5</sup></td>
+						<td>2<sup>4</sup></td>
+						<td>2<sup>3</sup></td>
+						<td>2<sup>2</sup></td>
+						<td>2<sup>1</sup></td>
+						<td>2<sup>0</sup></td>
+					</tr>
+					<tr>
+						<td id='digit_7'></td>
+						<td id='digit_6'></td>
+						<td id='digit_5'></td>
+						<td id='digit_4'></td>
+						<td id='digit_3'></td>
+						<td id='digit_2'></td>
+						<td id='digit_1'></td>
+						<td id='digit_0'></td>
+					</tr>
+				</table>
+			</div>
+
+			<div class='stage'>
+				<label class='fixed' for='hex'>Hex:</label>
+				<input class='narrow' type='text' id='hex'/>
+				<button id='check_hex' onclick='check_hex();'>Check</button>
+			</div>
+
+			<div class='stage'>
+				<label class='fixed' for='dec'>Decimal:</label>
+				<input class='narrow' type='text' id='dec'/>
+				<button id='check_decimal' 
+					onclick='check_decimal();'>Check</button>
+			</div>
+
+			<!--<label id='lbl_debug'></label>-->
+		</div>
+		{% include footer.html %}
+	</body>
+</html>

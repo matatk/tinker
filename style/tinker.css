@@ -1,0 +1,45 @@
+body {
+	width: 45em;
+	max-width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+	margin-bottom: 5%;
+	font-family: Verdana, Geneva, sans-serif;
+	background-color: #e9e9ef;
+	color: #333;
+	line-height: 1.5em;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	-o-hyphens: auto;
+	hyphens: auto;
+}
+
+header {
+	clear: both;
+	padding-top: 1em;
+}
+
+footer {
+	padding-top: 0.5em;
+	font-size: 0.8em;
+	clear: both;
+	border-top: 1px solid #999;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+a {
+	color: purple;
+	transition: 0.25s;
+	-moz-transition: 0.25s;
+	-o-transition: 0.25s;
+	-webkit-transition: 0.25s;
+}
+a:hover {
+	background-color: #999;
+	color: #e9e9ef;
+}

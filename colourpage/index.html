@@ -1,0 +1,81 @@
+---
+layout: nil
+---
+<!DOCTYPE html>
+<html lang='en-GB'>
+    <head>
+        <title>Colour page</title>
+        <style type='text/css'>
+            body {
+                font-size: 2em;
+                font-family: sans-serif;
+            }
+
+            #main {
+                width: 15em;
+                margin: auto; 
+                margin-top: 2em;
+                text-align: center;
+            }
+
+            form {
+                background-color: #CCC;
+                padding: 0.5em;
+            }
+
+            #main input {
+                font-size: inherit;
+                width: 6em;
+            }
+
+            #error {
+                width: 4em;
+                display: inline-block;
+            }
+
+			footer {
+				font-size: 0.8em;
+				position: absolute;
+				bottom: 0;
+				height: 3em;
+			}
+        </style>
+        <script type='text/javascript'>
+            function change() {
+                var hval = document.getElementById('colour_input').value;
+
+                if( hval.charAt(0) != '#' ) {
+                    hval = '#' + hval;
+                }
+
+                document.body.style.background = hval;
+            }
+
+            function check() {
+                var textbox = document.getElementById('colour_input');
+                var hval = textbox.value;
+                var label = document.getElementById('error');
+
+                if( /(^#?[0-9A-F]{6}$)|(^#?[0-9A-F]{3}$)/i.test(hval) ) {
+                    textbox.style.background = '#afa';
+                    label.innerHTML = '(ok)';
+                } else {
+                    textbox.style.background = '#faa';
+                    label.innerHTML = '(invalid)';
+                }
+            }
+        </script>
+		{% include track.html %}
+    </head>
+    <body onload="document.getElementById('colour_input').focus();">
+        <div id='main'>
+            <form action='javascript:change();'>
+                <label for='colour_input'>hex:</label>
+                <input type='text' id='colour_input'
+                    onchange='check();'/>
+                <label id='error'>&larr; type!</label>
+            </form>
+        </div>
+		{% include footer.html %}
+    </body>
+</html>
