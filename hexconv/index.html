@@ -102,13 +102,19 @@ layout: nil
 				// Debugging info
 				/*document.getElementById('lbl_debug').innerHTML = 
 					num + ' ' + num.toString(2) + ' ' + num.toString(16);*/
+
+				// Enable the textboxen and buttons...
+				var enable_ids = ['hex', 'dec', 'check_hex', 'check_dec'];
+				for( var i = 0; i < enable_ids.length; i++ ) {
+					document.getElementById(enable_ids[i]).disabled = false;
+				}
 			}
 
 			function check_hex() {
 				check_core('hex', 16);
 			}
 
-			function check_decimal() {
+			function check_dec() {
 				check_core('dec', 10);
 			}
 
@@ -159,15 +165,16 @@ layout: nil
 
 			<div class='stage'>
 				<label class='fixed' for='hex'>Hex:</label>
-				<input class='narrow' type='text' id='hex'/>
-				<button id='check_hex' onclick='check_hex();'>Check</button>
+				<input class='narrow' type='text' id='hex' disabled />
+				<button id='check_hex' disabled
+					onclick='check_hex();'>Check</button>
 			</div>
 
 			<div class='stage'>
 				<label class='fixed' for='dec'>Decimal:</label>
-				<input class='narrow' type='text' id='dec'/>
-				<button id='check_decimal' 
-					onclick='check_decimal();'>Check</button>
+				<input class='narrow' type='text' id='dec' disabled />
+				<button id='check_dec' disabled
+					onclick='check_dec();'>Check</button>
 			</div>
 
 			<!--<label id='lbl_debug'></label>-->
