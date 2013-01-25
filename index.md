@@ -1,10 +1,8 @@
 ---
 layout: base
-title: tinkerpages
+title: tinker apps
 ---
-Just some little single-page tools to hopefully keep me sharp on development techniques, as well as scratch itches.
-
-## The Pages
+A collection of single-page tools to scratch itches and help me learn development techniques.
 
 [Simple Timezone Converter](simpletimezone/)
 :A simpler timezone converter than I could find at the time; simply input the timezone and start time of your meeting, and the start time in your timezone is shown.
