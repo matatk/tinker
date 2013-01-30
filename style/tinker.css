@@ -5,9 +5,10 @@ body {
 	margin-right: auto;
 	margin-top: 0;
 	margin-bottom: 5%;
-	font-family: Verdana, Geneva, sans-serif;
 	background-color: #e9e9ef;
 	color: #333;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1.2em;
 	line-height: 1.5em;
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
