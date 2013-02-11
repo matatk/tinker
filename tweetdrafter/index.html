@@ -1,0 +1,85 @@
+---
+layout: nil
+title: Tweet Drafter
+---
+<!DOCTYPE html>
+<html lang='en-GB'>
+    <head>
+        <title>{{ page.title }}</title>
+        <style type='text/css'>
+            body {
+                font-family: Verdana, sans-serif;
+				font-size: 2em;
+				line-height: 1.5em;
+				text-align: center;
+            }
+
+			textarea {
+				font-size: inherit;
+				border: 1px solid black;
+				resize: none;
+			}
+
+			input[type=checkbox] {
+				font-size: inherit;
+			}
+
+			{% include footer.css %}
+		</style>
+        <script type='text/javascript'>
+			var TWEET_LENGTH = 140;
+			var PICTURE_LENGTH = 42;
+			var picture = false;
+
+			function picture_tick() {
+				if( picture ) {
+					picture = false;
+				} else {
+					picture = true;
+				}
+
+				changed(document.getElementById("draft"));
+			}
+
+			function changed(draft) {
+				var charcount = document.getElementById("charcount");
+				var remaining = TWEET_LENGTH - draft.value.length;
+				if( picture ) {
+					remaining -= PICTURE_LENGTH;
+				}
+				charcount.innerHTML = remaining + " characters remaining";
+			}
+        </script>
+		{% include track.html %}
+    </head>
+    <body>
+		<header>
+			<h1>{{ page.title }}</h1>
+		</header>
+		<main role="main">
+			<p>Draft your tweets before sending (does not record any data).</p>
+
+			<textarea
+				id="draft"
+				rows="4"
+				cols="35"
+				onkeyup="changed(this);"
+				aria-label="Draft tweet"
+				autofocus></textarea>
+			<br/>
+			<label>
+				<input
+					type="checkbox"
+					onchange="picture_tick();">
+				tweet includes a picture
+			</label>
+			<div aria-live="polite">
+				<span id="charcount">140 characters remaining</span>
+			</div>
+			<div aria-live="polite">
+				<span id="uris">0 links detected (not implemented yet)</span>
+			</div>
+        </main>
+		{% include footer.html %}
+    </body>
+</html>
