@@ -28,26 +28,69 @@ title: Tweet Drafter
 		</style>
         <script type='text/javascript'>
 			var TWEET_LENGTH = 140;
-			var PICTURE_LENGTH = 42;
+			var LEN_MEDIA = 22;
+			var LEN_HTTP = 22;
+			var LEN_HTTPS = 23;
 			var picture = false;
+			var cached = '';
 
-			function picture_tick() {
+			// See <https://dev.twitter.com/blog/upcoming-tco-changes>
+			// for info on size limits.
+
+			function media_toggle() {
 				if( picture ) {
 					picture = false;
 				} else {
 					picture = true;
 				}
 
-				changed(document.getElementById("draft"));
+				keyed(document.getElementById("draft"), true);
 			}
 
-			function changed(draft) {
-				var charcount = document.getElementById("charcount");
-				var remaining = TWEET_LENGTH - draft.value.length;
-				if( picture ) {
-					remaining -= PICTURE_LENGTH;
+			function keyed(draft, toggled) {
+				var url_regex = /(https?:\/\/[^\s]+)/g;
+				var urls_status = document.getElementById("urls");
+				var remaining;
+				var match;
+
+				// Protect against keypresses that don't change the string
+				if( !toggled && draft.value == cached ) {
+					return
 				}
-				charcount.innerHTML = remaining + " characters remaining";
+				cached = draft.value;
+
+				// Get base length, taking media into account
+				remaining = TWEET_LENGTH - draft.value.length;
+				if( picture ) {
+					remaining -= LEN_MEDIA;
+				}
+
+				// Find URLs and begin updating match number
+				match = draft.value.match(url_regex);
+				if( match ) {
+					for( var i = 0; i < match.length; i++ ) {
+						// Swap actual length of link for "shortened" version
+						var url = match[i];
+						remaining += url.length;
+						switch( url[4] ) {
+							case ':':	remaining -= LEN_HTTP;
+										break;
+							case 's':	remaining -= LEN_HTTPS;
+										break;
+							default:	alert("Malformed link: '" + url + "'");
+						}
+					}
+
+					urls_status.innerHTML = match.length;
+				} else {
+					urls_status.innerHTML = "0";
+				}
+
+				// Update statuses
+				document.getElementById("charcount")
+					.innerHTML = remaining + " characters remaining";
+
+				urls_status.innerHTML += " links in your tweet"; 
 			}
         </script>
 		{% include track.html %}
@@ -63,21 +106,21 @@ title: Tweet Drafter
 				id="draft"
 				rows="4"
 				cols="35"
-				onkeyup="changed(this);"
+				onkeyup="keyed(this, false);"
 				aria-label="Draft tweet"
 				autofocus></textarea>
 			<br/>
 			<label>
 				<input
 					type="checkbox"
-					onchange="picture_tick();">
-				tweet includes a picture
+					onchange="media_toggle();">
+				tweet includes a picture or other media
 			</label>
 			<div aria-live="polite">
 				<span id="charcount">140 characters remaining</span>
 			</div>
-			<div aria-live="polite">
-				<span id="uris">0 links detected (not implemented yet)</span>
+			<div aria-live="assertive">
+				<span id="urls">0 links in your tweet</span>
 			</div>
         </main>
 		{% include footer.html %}
