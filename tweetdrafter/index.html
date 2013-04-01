@@ -3,16 +3,16 @@ layout: nil
 title: Tweet Drafter
 ---
 <!DOCTYPE html>
-<html lang='en-GB'>
-    <head>
-        <title>{{ page.title }}</title>
-        <style type='text/css'>
-            body {
-                font-family: Verdana, sans-serif;
+<html lang="en-GB">
+	<head>
+		<title>{{ page.title }}</title>
+		<style type='text/css'>
+			body {
+				font-family: Verdana, sans-serif;
 				font-size: 2em;
 				line-height: 1.5em;
 				text-align: center;
-            }
+			}
 
 			textarea {
 				font-size: inherit;
@@ -26,7 +26,7 @@ title: Tweet Drafter
 
 			{% include footer.css %}
 		</style>
-        <script type='text/javascript'>
+		<script type='text/javascript'>
 			var TWEET_LENGTH = 140;
 			var LEN_MEDIA = 22;
 			var LEN_HTTP = 22;
@@ -92,10 +92,10 @@ title: Tweet Drafter
 
 				urls_status.innerHTML += " links in your tweet"; 
 			}
-        </script>
+		</script>
 		{% include track.html %}
-    </head>
-    <body>
+	</head>
+	<body>
 		<header>
 			<h1>{{ page.title }}</h1>
 		</header>
@@ -122,7 +122,7 @@ title: Tweet Drafter
 			<div aria-live="assertive">
 				<span id="urls">0 links in your tweet</span>
 			</div>
-        </main>
+		</main>
 		{% include footer.html %}
-    </body>
+	</body>
 </html>

@@ -3,31 +3,31 @@ layout: nil
 title: Simple Timezone Converter
 ---
 <!DOCTYPE html>
-<html lang='en-GB'>
-    <head>
-        <title>{{ page.title }}</title>
-        <style type='text/css'>
-            body {
-                font-family: sans-serif;
+<html lang="en-GB">
+	<head>
+		<title>{{ page.title }}</title>
+		<style type='text/css'>
+			body {
+				font-family: Verdana, sans-serif;
 				font-size: 1.5em;
 				line-height: 1.5em;
-            }
+			}
 
 			{% include footer.css %}
 		</style>
-        <script src='simpletimezone.js'></script>
+		<script src='simpletimezone.js'></script>
 		{% include track.html %}
-    </head>
-    <body>
+	</head>
+	<body>
 		<header>
 			<h1>{{ page.title }}</h1>
 		</header>
 		<main role="main">
 			<p>42</p>
-        </main>
+		</main>
 		<aside>
 			<p><a href='test.html'>unit tests</a></p>
 		</aside>
 		{% include footer.html %}
-    </body>
+	</body>
 </html>

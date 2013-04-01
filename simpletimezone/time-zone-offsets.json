@@ -1,0 +1,972 @@
+{
+    "acdt-australian-central-daylight-time": {
+        "abbreviation": "ACDT", 
+        "name": "Australian Central Daylight Time", 
+        "offset": 10.5
+    }, 
+    "acst-australian-central-standard-time": {
+        "abbreviation": "ACST", 
+        "name": "Australian Central Standard Time", 
+        "offset": 9.5
+    }, 
+    "act-asean-common-time": {
+        "abbreviation": "ACT", 
+        "name": "ASEAN Common Time", 
+        "offset": 8
+    }, 
+    "adt-atlantic-daylight-time": {
+        "abbreviation": "ADT", 
+        "name": "Atlantic Daylight Time", 
+        "offset": -3
+    }, 
+    "aedt-australian-eastern-daylight-time": {
+        "abbreviation": "AEDT", 
+        "name": "Australian Eastern Daylight Time", 
+        "offset": 11
+    }, 
+    "aest-australian-eastern-standard-time": {
+        "abbreviation": "AEST", 
+        "name": "Australian Eastern Standard Time", 
+        "offset": 10
+    }, 
+    "aft-afghanistan-time": {
+        "abbreviation": "AFT", 
+        "name": "Afghanistan Time", 
+        "offset": 4.5
+    }, 
+    "akdt-alaska-daylight-time": {
+        "abbreviation": "AKDT", 
+        "name": "Alaska Daylight Time", 
+        "offset": -8
+    }, 
+    "akst-alaska-standard-time": {
+        "abbreviation": "AKST", 
+        "name": "Alaska Standard Time", 
+        "offset": -9
+    }, 
+    "amst-armenia-summer-time": {
+        "abbreviation": "AMST", 
+        "name": "Armenia Summer Time", 
+        "offset": 5
+    }, 
+    "amt-armenia-time": {
+        "abbreviation": "AMT", 
+        "name": "Armenia Time", 
+        "offset": 4
+    }, 
+    "art-argentina-time": {
+        "abbreviation": "ART", 
+        "name": "Argentina Time", 
+        "offset": -3
+    }, 
+    "ast-arab-standard-time-kuwait-riyadh": {
+        "abbreviation": "AST", 
+        "name": "Arab Standard Time (Kuwait, Riyadh)", 
+        "offset": 3
+    }, 
+    "ast-arabian-standard-time-abu-dhabi-muscat": {
+        "abbreviation": "AST", 
+        "name": "Arabian Standard Time (Abu Dhabi, Muscat)", 
+        "offset": 4
+    }, 
+    "ast-arabic-standard-time-baghdad": {
+        "abbreviation": "AST", 
+        "name": "Arabic Standard Time (Baghdad)", 
+        "offset": 3
+    }, 
+    "ast-atlantic-standard-time": {
+        "abbreviation": "AST", 
+        "name": "Atlantic Standard Time", 
+        "offset": -4
+    }, 
+    "awdt-australian-western-daylight-time": {
+        "abbreviation": "AWDT", 
+        "name": "Australian Western Daylight Time", 
+        "offset": 9
+    }, 
+    "awst-australian-western-standard-time": {
+        "abbreviation": "AWST", 
+        "name": "Australian Western Standard Time", 
+        "offset": 8
+    }, 
+    "azost-azores-standard-time": {
+        "abbreviation": "AZOST", 
+        "name": "Azores Standard Time", 
+        "offset": -1
+    }, 
+    "azt-azerbaijan-time": {
+        "abbreviation": "AZT", 
+        "name": "Azerbaijan Time", 
+        "offset": 4
+    }, 
+    "bdt-brunei-time": {
+        "abbreviation": "BDT", 
+        "name": "Brunei Time", 
+        "offset": 8
+    }, 
+    "biot-british-indian-ocean-time": {
+        "abbreviation": "BIOT", 
+        "name": "British Indian Ocean Time", 
+        "offset": 6
+    }, 
+    "bit-baker-island-time": {
+        "abbreviation": "BIT", 
+        "name": "Baker Island Time", 
+        "offset": -12
+    }, 
+    "bot-bolivia-time": {
+        "abbreviation": "BOT", 
+        "name": "Bolivia Time", 
+        "offset": -4
+    }, 
+    "brt-brasilia-time": {
+        "abbreviation": "BRT", 
+        "name": "Brasilia Time", 
+        "offset": -3
+    }, 
+    "bst-bangladesh-standard-time": {
+        "abbreviation": "BST", 
+        "name": "Bangladesh Standard Time", 
+        "offset": 6
+    }, 
+    "bst-british-summer-time-british-standard-time-from-feb--to-oct-": {
+        "abbreviation": "BST", 
+        "name": "British Summer Time (British Standard Time from Feb 1968 to Oct 1971)", 
+        "offset": 1
+    }, 
+    "btt-bhutan-time": {
+        "abbreviation": "BTT", 
+        "name": "Bhutan Time", 
+        "offset": 6
+    }, 
+    "cat-central-africa-time": {
+        "abbreviation": "CAT", 
+        "name": "Central Africa Time", 
+        "offset": 2
+    }, 
+    "cct-cocos-islands-time": {
+        "abbreviation": "CCT", 
+        "name": "Cocos Islands Time", 
+        "offset": 6.5
+    }, 
+    "cdt-central-daylight-time-north-america": {
+        "abbreviation": "CDT", 
+        "name": "Central Daylight Time (North America)", 
+        "offset": -5
+    }, 
+    "cdt-cuba-daylight-time": {
+        "abbreviation": "CDT", 
+        "name": "Cuba Daylight Time[1]", 
+        "offset": -4
+    }, 
+    "cedt-central-european-daylight-time": {
+        "abbreviation": "CEDT", 
+        "name": "Central European Daylight Time", 
+        "offset": 2
+    }, 
+    "cest-central-european-summer-time-cf-haec": {
+        "abbreviation": "CEST", 
+        "name": "Central European Summer Time (Cf. HAEC)", 
+        "offset": 2
+    }, 
+    "cet-central-european-time": {
+        "abbreviation": "CET", 
+        "name": "Central European Time", 
+        "offset": 1
+    }, 
+    "chadt-chatham-daylight-time": {
+        "abbreviation": "CHADT", 
+        "name": "Chatham Daylight Time", 
+        "offset": 13.5
+    }, 
+    "chast-chatham-standard-time": {
+        "abbreviation": "CHAST", 
+        "name": "Chatham Standard Time", 
+        "offset": 12.5
+    }, 
+    "chot-choibalsan": {
+        "abbreviation": "CHOT", 
+        "name": "Choibalsan", 
+        "offset": -8
+    }, 
+    "chst-chamorro-standard-time": {
+        "abbreviation": "ChST", 
+        "name": "Chamorro Standard Time", 
+        "offset": 10
+    }, 
+    "chut-chuuk-time": {
+        "abbreviation": "CHUT", 
+        "name": "Chuuk Time", 
+        "offset": 10
+    }, 
+    "cist-clipperton-island-standard-time": {
+        "abbreviation": "CIST", 
+        "name": "Clipperton Island Standard Time", 
+        "offset": -8
+    }, 
+    "cit-central-indonesia-time": {
+        "abbreviation": "CIT", 
+        "name": "Central Indonesia Time", 
+        "offset": 8
+    }, 
+    "ckt-cook-island-time": {
+        "abbreviation": "CKT", 
+        "name": "Cook Island Time", 
+        "offset": -10
+    }, 
+    "clst-chile-summer-time": {
+        "abbreviation": "CLST", 
+        "name": "Chile Summer Time", 
+        "offset": -3
+    }, 
+    "clt-chile-standard-time": {
+        "abbreviation": "CLT", 
+        "name": "Chile Standard Time", 
+        "offset": -4
+    }, 
+    "cost-colombia-summer-time": {
+        "abbreviation": "COST", 
+        "name": "Colombia Summer Time", 
+        "offset": -4
+    }, 
+    "cot-colombia-time": {
+        "abbreviation": "COT", 
+        "name": "Colombia Time", 
+        "offset": -5
+    }, 
+    "cst-central-standard-time-australia": {
+        "abbreviation": "CST", 
+        "name": "Central Standard Time (Australia)", 
+        "offset": 9.5
+    }, 
+    "cst-central-standard-time-north-america": {
+        "abbreviation": "CST", 
+        "name": "Central Standard Time (North America)", 
+        "offset": -6
+    }, 
+    "cst-central-summer-time-australia": {
+        "abbreviation": "CST", 
+        "name": "Central Summer Time (Australia)", 
+        "offset": 10.5
+    }, 
+    "cst-china-standard-time": {
+        "abbreviation": "CST", 
+        "name": "China Standard Time", 
+        "offset": 8
+    }, 
+    "cst-cuba-standard-time": {
+        "abbreviation": "CST", 
+        "name": "Cuba Standard Time", 
+        "offset": -5
+    }, 
+    "ct-china-time": {
+        "abbreviation": "CT", 
+        "name": "China time", 
+        "offset": 8
+    }, 
+    "cvt-cape-verde-time": {
+        "abbreviation": "CVT", 
+        "name": "Cape Verde Time", 
+        "offset": -1
+    }, 
+    "cwst-central-western-standard-time-australia": {
+        "abbreviation": "CWST", 
+        "name": "Central Western Standard Time (Australia)", 
+        "offset": 8.5
+    }, 
+    "cxt-christmas-island-time": {
+        "abbreviation": "CXT", 
+        "name": "Christmas Island Time", 
+        "offset": 7
+    }, 
+    "davt-davis-time": {
+        "abbreviation": "DAVT", 
+        "name": "Davis Time", 
+        "offset": 7
+    }, 
+    "ddut-dumont-durville-time": {
+        "abbreviation": "DDUT", 
+        "name": "Dumont d'Urville Time", 
+        "offset": 10
+    }, 
+    "dft-aix-specific-equivalent-of-central-european-time": {
+        "abbreviation": "DFT", 
+        "name": "AIX specific equivalent of Central European Time[2]", 
+        "offset": 1
+    }, 
+    "easst-easter-island-standard-summer-time": {
+        "abbreviation": "EASST", 
+        "name": "Easter Island Standard Summer Time", 
+        "offset": -5
+    }, 
+    "east-easter-island-standard-time": {
+        "abbreviation": "EAST", 
+        "name": "Easter Island Standard Time", 
+        "offset": -6
+    }, 
+    "eat-east-africa-time": {
+        "abbreviation": "EAT", 
+        "name": "East Africa Time", 
+        "offset": 3
+    }, 
+    "ect-eastern-caribbean-time-does-not-recognise-dst": {
+        "abbreviation": "ECT", 
+        "name": "Eastern Caribbean Time (does not recognise DST)", 
+        "offset": -4
+    }, 
+    "ect-ecuador-time": {
+        "abbreviation": "ECT", 
+        "name": "Ecuador Time", 
+        "offset": -5
+    }, 
+    "edt-eastern-daylight-time-north-america": {
+        "abbreviation": "EDT", 
+        "name": "Eastern Daylight Time (North America)", 
+        "offset": -4
+    }, 
+    "eedt-eastern-european-daylight-time": {
+        "abbreviation": "EEDT", 
+        "name": "Eastern European Daylight Time", 
+        "offset": 3
+    }, 
+    "eest-eastern-european-summer-time": {
+        "abbreviation": "EEST", 
+        "name": "Eastern European Summer Time", 
+        "offset": 3
+    }, 
+    "eet-eastern-european-time": {
+        "abbreviation": "EET", 
+        "name": "Eastern European Time", 
+        "offset": 2
+    }, 
+    "egst-eastern-greenland-summer-time": {
+        "abbreviation": "EGST", 
+        "name": "Eastern Greenland Summer Time", 
+        "offset": 0
+    }, 
+    "egt-eastern-greenland-time": {
+        "abbreviation": "EGT", 
+        "name": "Eastern Greenland Time", 
+        "offset": -1
+    }, 
+    "eit-eastern-indonesian-time": {
+        "abbreviation": "EIT", 
+        "name": "Eastern Indonesian Time", 
+        "offset": 9
+    }, 
+    "est-eastern-standard-time-australia": {
+        "abbreviation": "EST", 
+        "name": "Eastern Standard Time (Australia)", 
+        "offset": 10
+    }, 
+    "est-eastern-standard-time-north-america": {
+        "abbreviation": "EST", 
+        "name": "Eastern Standard Time (North America)", 
+        "offset": -5
+    }, 
+    "fet-further-eastern_european_time": {
+        "abbreviation": "FET", 
+        "name": "Further-eastern_European_Time", 
+        "offset": 3
+    }, 
+    "fjt-fiji-time": {
+        "abbreviation": "FJT", 
+        "name": "Fiji Time", 
+        "offset": 12
+    }, 
+    "fkst-falkland-islands-summer-time": {
+        "abbreviation": "FKST", 
+        "name": "Falkland Islands Summer Time", 
+        "offset": -3
+    }, 
+    "fkt-falkland-islands-time": {
+        "abbreviation": "FKT", 
+        "name": "Falkland Islands Time", 
+        "offset": -4
+    }, 
+    "fnt-fernando-de-noronha-time": {
+        "abbreviation": "FNT", 
+        "name": "Fernando de Noronha Time", 
+        "offset": -2
+    }, 
+    "galt-galapagos-time": {
+        "abbreviation": "GALT", 
+        "name": "Galapagos Time", 
+        "offset": -6
+    }, 
+    "gamt-gambier-islands": {
+        "abbreviation": "GAMT", 
+        "name": "Gambier Islands", 
+        "offset": -9
+    }, 
+    "get-georgia-standard-time": {
+        "abbreviation": "GET", 
+        "name": "Georgia Standard Time", 
+        "offset": 4
+    }, 
+    "gft-french-guiana-time": {
+        "abbreviation": "GFT", 
+        "name": "French Guiana Time", 
+        "offset": -3
+    }, 
+    "gilt-gilbert-island-time": {
+        "abbreviation": "GILT", 
+        "name": "Gilbert Island Time", 
+        "offset": 12
+    }, 
+    "git-gambier-island-time": {
+        "abbreviation": "GIT", 
+        "name": "Gambier Island Time", 
+        "offset": -9
+    }, 
+    "gmt-greenwich-mean-time": {
+        "abbreviation": "GMT", 
+        "name": "Greenwich Mean Time", 
+        "offset": 0
+    }, 
+    "gst-gulf-standard-time": {
+        "abbreviation": "GST", 
+        "name": "Gulf Standard Time", 
+        "offset": 4
+    }, 
+    "gst-south-georgia-and-the-south-sandwich-islands": {
+        "abbreviation": "GST", 
+        "name": "South Georgia and the South Sandwich Islands", 
+        "offset": -2
+    }, 
+    "gyt-guyana-time": {
+        "abbreviation": "GYT", 
+        "name": "Guyana Time", 
+        "offset": -4
+    }, 
+    "hadt-hawaii-aleutian-daylight-time": {
+        "abbreviation": "HADT", 
+        "name": "Hawaii-Aleutian Daylight Time", 
+        "offset": -9
+    }, 
+    "haec-heure-avancée-deurope-centrale-francised-name-for-cest": {
+        "abbreviation": "HAEC", 
+        "name": "Heure Avancée d'Europe Centrale francised name for CEST", 
+        "offset": 2
+    }, 
+    "hast-hawaii-aleutian-standard-time": {
+        "abbreviation": "HAST", 
+        "name": "Hawaii-Aleutian Standard Time", 
+        "offset": -10
+    }, 
+    "hkt-hong-kong-time": {
+        "abbreviation": "HKT", 
+        "name": "Hong Kong Time", 
+        "offset": 8
+    }, 
+    "hmt-heard-and-mcdonald-islands-time": {
+        "abbreviation": "HMT", 
+        "name": "Heard and McDonald Islands Time", 
+        "offset": 5
+    }, 
+    "hovt-khovd-time": {
+        "abbreviation": "HOVT", 
+        "name": "Khovd Time", 
+        "offset": 7
+    }, 
+    "hst-hawaii-standard-time": {
+        "abbreviation": "HST", 
+        "name": "Hawaii Standard Time", 
+        "offset": -10
+    }, 
+    "ict-indochina-time": {
+        "abbreviation": "ICT", 
+        "name": "Indochina Time", 
+        "offset": 7
+    }, 
+    "idt-israel-daylight-time": {
+        "abbreviation": "IDT", 
+        "name": "Israel Daylight Time", 
+        "offset": 3
+    }, 
+    "iot-indian-ocean-time": {
+        "abbreviation": "IOT", 
+        "name": "Indian Ocean Time", 
+        "offset": 3
+    }, 
+    "irdt-iran-daylight-time": {
+        "abbreviation": "IRDT", 
+        "name": "Iran Daylight Time", 
+        "offset": 8
+    }, 
+    "irkt-irkutsk-time": {
+        "abbreviation": "IRKT", 
+        "name": "Irkutsk Time", 
+        "offset": 9
+    }, 
+    "irst-iran-standard-time": {
+        "abbreviation": "IRST", 
+        "name": "Iran Standard Time", 
+        "offset": 3.5
+    }, 
+    "ist-indian-standard-time": {
+        "abbreviation": "IST", 
+        "name": "Indian Standard Time", 
+        "offset": 5.5
+    }, 
+    "ist-irish-standard-time": {
+        "abbreviation": "IST", 
+        "name": "Irish Standard Time[3]", 
+        "offset": 1
+    }, 
+    "ist-israel-standard-time": {
+        "abbreviation": "IST", 
+        "name": "Israel Standard Time", 
+        "offset": 2
+    }, 
+    "jst-japan-standard-time": {
+        "abbreviation": "JST", 
+        "name": "Japan Standard Time", 
+        "offset": 9
+    }, 
+    "kgt-kyrgyzstan-time": {
+        "abbreviation": "KGT", 
+        "name": "Kyrgyzstan time", 
+        "offset": 6
+    }, 
+    "kost-kosrae-time": {
+        "abbreviation": "KOST", 
+        "name": "Kosrae Time", 
+        "offset": 11
+    }, 
+    "krat-krasnoyarsk-time": {
+        "abbreviation": "KRAT", 
+        "name": "Krasnoyarsk Time", 
+        "offset": 7
+    }, 
+    "kst-korea-standard-time": {
+        "abbreviation": "KST", 
+        "name": "Korea Standard Time", 
+        "offset": 9
+    }, 
+    "lhst-lord-howe-standard-time": {
+        "abbreviation": "LHST", 
+        "name": "Lord Howe Standard Time", 
+        "offset": 10.5
+    }, 
+    "lhst-lord-howe-summer-time": {
+        "abbreviation": "LHST", 
+        "name": "Lord Howe Summer Time", 
+        "offset": 11
+    }, 
+    "lint-line-islands-time": {
+        "abbreviation": "LINT", 
+        "name": "Line Islands Time", 
+        "offset": 14
+    }, 
+    "magt-magadan-time": {
+        "abbreviation": "MAGT", 
+        "name": "Magadan Time", 
+        "offset": 12
+    }, 
+    "mart-marquesas-islands-time": {
+        "abbreviation": "MART", 
+        "name": "Marquesas Islands Time", 
+        "offset": -9.5
+    }, 
+    "mawt-mawson-station-time": {
+        "abbreviation": "MAWT", 
+        "name": "Mawson Station Time", 
+        "offset": 5
+    }, 
+    "mdt-mountain-daylight-time-north-america": {
+        "abbreviation": "MDT", 
+        "name": "Mountain Daylight Time (North America)", 
+        "offset": -6
+    }, 
+    "mest-middle-european-saving-time-same-zone-as-cest": {
+        "abbreviation": "MEST", 
+        "name": "Middle European Saving Time Same zone as CEST", 
+        "offset": 2
+    }, 
+    "met-middle-european-time-same-zone-as-cet": {
+        "abbreviation": "MET", 
+        "name": "Middle European Time Same zone as CET", 
+        "offset": 1
+    }, 
+    "mht-marshall-islands": {
+        "abbreviation": "MHT", 
+        "name": "Marshall Islands", 
+        "offset": 12
+    }, 
+    "mist-macquarie-island-station-time": {
+        "abbreviation": "MIST", 
+        "name": "Macquarie Island Station Time", 
+        "offset": 11
+    }, 
+    "mit-marquesas-islands-time": {
+        "abbreviation": "MIT", 
+        "name": "Marquesas Islands Time", 
+        "offset": -9.5
+    }, 
+    "mmt-myanmar-time": {
+        "abbreviation": "MMT", 
+        "name": "Myanmar Time", 
+        "offset": 6.5
+    }, 
+    "msk-moscow-time": {
+        "abbreviation": "MSK", 
+        "name": "Moscow Time", 
+        "offset": 4
+    }, 
+    "mst-malaysia-standard-time": {
+        "abbreviation": "MST", 
+        "name": "Malaysia Standard Time", 
+        "offset": 8
+    }, 
+    "mst-mountain-standard-time-north-america": {
+        "abbreviation": "MST", 
+        "name": "Mountain Standard Time (North America)", 
+        "offset": -7
+    }, 
+    "mst-myanmar-standard-time": {
+        "abbreviation": "MST", 
+        "name": "Myanmar Standard Time", 
+        "offset": 6.5
+    }, 
+    "mut-mauritius-time": {
+        "abbreviation": "MUT", 
+        "name": "Mauritius Time", 
+        "offset": 4
+    }, 
+    "mvt-maldives-time": {
+        "abbreviation": "MVT", 
+        "name": "Maldives Time", 
+        "offset": 5
+    }, 
+    "myt-malaysia-time": {
+        "abbreviation": "MYT", 
+        "name": "Malaysia Time", 
+        "offset": 8
+    }, 
+    "nct-new-caledonia-time": {
+        "abbreviation": "NCT", 
+        "name": "New Caledonia Time", 
+        "offset": 11
+    }, 
+    "ndt-newfoundland-daylight-time": {
+        "abbreviation": "NDT", 
+        "name": "Newfoundland Daylight Time", 
+        "offset": -2.5
+    }, 
+    "nft-norfolk-time": {
+        "abbreviation": "NFT", 
+        "name": "Norfolk Time", 
+        "offset": 11.5
+    }, 
+    "npt-nepal-time": {
+        "abbreviation": "NPT", 
+        "name": "Nepal Time", 
+        "offset": 5.5
+    }, 
+    "nst-newfoundland-standard-time": {
+        "abbreviation": "NST", 
+        "name": "Newfoundland Standard Time", 
+        "offset": -3.5
+    }, 
+    "nt-newfoundland-time": {
+        "abbreviation": "NT", 
+        "name": "Newfoundland Time", 
+        "offset": -3.5
+    }, 
+    "nut-niue-time": {
+        "abbreviation": "NUT", 
+        "name": "Niue Time", 
+        "offset": -11.5
+    }, 
+    "nzdt-new-zealand-daylight-time": {
+        "abbreviation": "NZDT", 
+        "name": "New Zealand Daylight Time", 
+        "offset": 13
+    }, 
+    "nzst-new-zealand-standard-time": {
+        "abbreviation": "NZST", 
+        "name": "New Zealand Standard Time", 
+        "offset": 12
+    }, 
+    "omst-omsk-time": {
+        "abbreviation": "OMST", 
+        "name": "Omsk Time", 
+        "offset": 6
+    }, 
+    "orat-oral-time": {
+        "abbreviation": "ORAT", 
+        "name": "Oral Time", 
+        "offset": 5
+    }, 
+    "pdt-pacific-daylight-time-north-america": {
+        "abbreviation": "PDT", 
+        "name": "Pacific Daylight Time (North America)", 
+        "offset": -7
+    }, 
+    "pet-peru-time": {
+        "abbreviation": "PET", 
+        "name": "Peru Time", 
+        "offset": -5
+    }, 
+    "pett-kamchatka-time": {
+        "abbreviation": "PETT", 
+        "name": "Kamchatka Time", 
+        "offset": 12
+    }, 
+    "pgt-papua-new-guinea-time": {
+        "abbreviation": "PGT", 
+        "name": "Papua New Guinea Time", 
+        "offset": 10
+    }, 
+    "phot-phoenix-island-time": {
+        "abbreviation": "PHOT", 
+        "name": "Phoenix Island Time", 
+        "offset": 13
+    }, 
+    "pht-philippine-time": {
+        "abbreviation": "PHT", 
+        "name": "Philippine Time", 
+        "offset": 8
+    }, 
+    "pkt-pakistan-standard-time": {
+        "abbreviation": "PKT", 
+        "name": "Pakistan Standard Time", 
+        "offset": 5
+    }, 
+    "pmdt-saint-pierre-and-miquelon-daylight-time": {
+        "abbreviation": "PMDT", 
+        "name": "Saint Pierre and Miquelon Daylight time", 
+        "offset": -2
+    }, 
+    "pmst-saint-pierre-and-miquelon-standard-time": {
+        "abbreviation": "PMST", 
+        "name": "Saint Pierre and Miquelon Standard Time", 
+        "offset": -3
+    }, 
+    "pont-pohnpei-standard-time": {
+        "abbreviation": "PONT", 
+        "name": "Pohnpei Standard Time", 
+        "offset": 11
+    }, 
+    "pst-pacific-standard-time-north-america": {
+        "abbreviation": "PST", 
+        "name": "Pacific Standard Time (North America)", 
+        "offset": -8
+    }, 
+    "pst-philippine-standard-time": {
+        "abbreviation": "PST", 
+        "name": "Philippine Standard Time", 
+        "offset": 8
+    }, 
+    "ret-réunion-time": {
+        "abbreviation": "RET", 
+        "name": "Réunion Time", 
+        "offset": 4
+    }, 
+    "rott-rothera-research-station-time": {
+        "abbreviation": "ROTT", 
+        "name": "Rothera Research Station Time", 
+        "offset": -3
+    }, 
+    "sakt-sakhalin-island-time": {
+        "abbreviation": "SAKT", 
+        "name": "Sakhalin Island time", 
+        "offset": 11
+    }, 
+    "samt-samara-time": {
+        "abbreviation": "SAMT", 
+        "name": "Samara Time", 
+        "offset": 4
+    }, 
+    "sast-south-african-standard-time": {
+        "abbreviation": "SAST", 
+        "name": "South African Standard Time", 
+        "offset": 2
+    }, 
+    "sbt-solomon-islands-time": {
+        "abbreviation": "SBT", 
+        "name": "Solomon Islands Time", 
+        "offset": 11
+    }, 
+    "sct-seychelles-time": {
+        "abbreviation": "SCT", 
+        "name": "Seychelles Time", 
+        "offset": 4
+    }, 
+    "sgt-singapore-time": {
+        "abbreviation": "SGT", 
+        "name": "Singapore Time", 
+        "offset": 8
+    }, 
+    "slt-sri-lanka-time": {
+        "abbreviation": "SLT", 
+        "name": "Sri Lanka Time", 
+        "offset": 5.5
+    }, 
+    "srt-suriname-time": {
+        "abbreviation": "SRT", 
+        "name": "Suriname Time", 
+        "offset": -3
+    }, 
+    "sst-samoa-standard-time": {
+        "abbreviation": "SST", 
+        "name": "Samoa Standard Time", 
+        "offset": -11
+    }, 
+    "sst-singapore-standard-time": {
+        "abbreviation": "SST", 
+        "name": "Singapore Standard Time", 
+        "offset": 8
+    }, 
+    "syot-showa-station-time": {
+        "abbreviation": "SYOT", 
+        "name": "Showa Station Time", 
+        "offset": 3
+    }, 
+    "taht-tahiti-time": {
+        "abbreviation": "TAHT", 
+        "name": "Tahiti Time", 
+        "offset": -10
+    }, 
+    "tft-indian/kerguelen": {
+        "abbreviation": "TFT", 
+        "name": "Indian/Kerguelen", 
+        "offset": 5
+    }, 
+    "tha-thailand-standard-time": {
+        "abbreviation": "THA", 
+        "name": "Thailand Standard Time", 
+        "offset": 7
+    }, 
+    "tjt-tajikistan-time": {
+        "abbreviation": "TJT", 
+        "name": "Tajikistan Time", 
+        "offset": 5
+    }, 
+    "tkt-tokelau-time": {
+        "abbreviation": "TKT", 
+        "name": "Tokelau Time", 
+        "offset": 14
+    }, 
+    "tlt-timor-leste-time": {
+        "abbreviation": "TLT", 
+        "name": "Timor Leste Time", 
+        "offset": 9
+    }, 
+    "tmt-turkmenistan-time": {
+        "abbreviation": "TMT", 
+        "name": "Turkmenistan Time", 
+        "offset": 5
+    }, 
+    "tot-tonga-time": {
+        "abbreviation": "TOT", 
+        "name": "Tonga Time", 
+        "offset": 13
+    }, 
+    "tvt-tuvalu-time": {
+        "abbreviation": "TVT", 
+        "name": "Tuvalu Time", 
+        "offset": 12
+    }, 
+    "uct-coordinated-universal-time": {
+        "abbreviation": "UCT", 
+        "name": "Coordinated Universal Time", 
+        "offset": 0
+    }, 
+    "ulat-ulaanbaatar-time": {
+        "abbreviation": "ULAT", 
+        "name": "Ulaanbaatar Time", 
+        "offset": 8
+    }, 
+    "utc-coordinated-universal-time": {
+        "abbreviation": "UTC", 
+        "name": "Coordinated Universal Time", 
+        "offset": 0
+    }, 
+    "uyst-uruguay-summer-time": {
+        "abbreviation": "UYST", 
+        "name": "Uruguay Summer Time", 
+        "offset": -2
+    }, 
+    "uyt-uruguay-standard-time": {
+        "abbreviation": "UYT", 
+        "name": "Uruguay Standard Time", 
+        "offset": -3
+    }, 
+    "uzt-uzbekistan-time": {
+        "abbreviation": "UZT", 
+        "name": "Uzbekistan Time", 
+        "offset": 5
+    }, 
+    "vet-venezuelan-standard-time": {
+        "abbreviation": "VET", 
+        "name": "Venezuelan Standard Time", 
+        "offset": -4.5
+    }, 
+    "vlat-vladivostok-time": {
+        "abbreviation": "VLAT", 
+        "name": "Vladivostok Time", 
+        "offset": 10
+    }, 
+    "volt-volgograd-time": {
+        "abbreviation": "VOLT", 
+        "name": "Volgograd Time", 
+        "offset": 4
+    }, 
+    "vost-vostok-station-time": {
+        "abbreviation": "VOST", 
+        "name": "Vostok Station Time", 
+        "offset": 6
+    }, 
+    "vut-vanuatu-time": {
+        "abbreviation": "VUT", 
+        "name": "Vanuatu Time", 
+        "offset": 11
+    }, 
+    "wakt-wake-island-time": {
+        "abbreviation": "WAKT", 
+        "name": "Wake Island Time", 
+        "offset": 12
+    }, 
+    "wast-west-africa-summer-time": {
+        "abbreviation": "WAST", 
+        "name": "West Africa Summer Time", 
+        "offset": 2
+    }, 
+    "wat-west-africa-time": {
+        "abbreviation": "WAT", 
+        "name": "West Africa Time", 
+        "offset": 1
+    }, 
+    "wedt-western-european-daylight-time": {
+        "abbreviation": "WEDT", 
+        "name": "Western European Daylight Time", 
+        "offset": 1
+    }, 
+    "west-western-european-summer-time": {
+        "abbreviation": "WEST", 
+        "name": "Western European Summer Time", 
+        "offset": 1
+    }, 
+    "wet-western-european-time": {
+        "abbreviation": "WET", 
+        "name": "Western European Time", 
+        "offset": 0
+    }, 
+    "wst-western-standard-time": {
+        "abbreviation": "WST", 
+        "name": "Western Standard Time", 
+        "offset": 8
+    }, 
+    "yakt-yakutsk-time": {
+        "abbreviation": "YAKT", 
+        "name": "Yakutsk Time", 
+        "offset": 9
+    }, 
+    "yekt-yekaterinburg-time": {
+        "abbreviation": "YEKT", 
+        "name": "Yekaterinburg Time", 
+        "offset": 5
+    }
+}
