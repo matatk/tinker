@@ -5,7 +5,8 @@ test("Matching timezones by abbreviation or name", function() {
 		deepEqual(
 			stz.matching_time_zones(test_rec.input),
 			test_rec.matches,
-			"Check matches for: '" + test_rec.input + "'."
+			"Check " + Object.keys(test_rec.matches).length
+				+ " expected matches for: '" + test_rec.input + "'."
 		);
 	}
 });
