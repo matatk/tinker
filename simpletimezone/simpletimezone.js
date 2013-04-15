@@ -1,6 +1,5 @@
-"use strict";
-
 (function() {
+	"use strict";
 	var OffsetGetter = (function() {
 		function OffsetGetter() {
 			// Nothing to see here; move along.
