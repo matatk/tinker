@@ -1,0 +1,65 @@
+---
+layout: nil
+---
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+		<title>twitipedia</title>
+		<style type='text/css'>
+			body {
+				font-family: Verdana, Helvetica, sans-serif;
+				width: 42em;
+				padding: 5%;
+				color: gray;
+			}
+
+			#title a {
+				color: black;
+				background-color: #ccc;
+				padding: 0.25em;
+				text-decoration: none;
+				border: 1px solid black;
+			}
+
+			#tagline {
+				font-size: 0.5em;
+			}
+
+			#abstract {
+				padding: 0.5em;
+				border: 1px solid gray;
+			}
+
+			a.example {
+				color: gray;
+				font-family: monospace;
+			}
+
+			#stop {
+				background-color: #ddf;
+				padding: 0.5em;
+				color: black;
+				font-family: serif;
+			}
+		</style>
+		{% include track.html %}
+	</head>
+	<body>
+		<h1 id='title'><a href='javascript:(function(){uri=window.location.href;if(uri.indexOf("wikipedia.org")==-1){alert("This%20appears%20not%20to%20be%20a%20Wikipedia%20article.");return;}uri=uri.replace("(","%2528");uri=uri.replace(")","%2529");prompt("Copy%20Twitter-friendly%20address%20to%20clipboard:",uri);})();'>twitipedia</a><span id='tagline'> &larr; drag to your bookmarks bar</span></h1>
+		<div id='abstract'>
+			<p>to stop broken/misleading links like this happening on Twitter:</p>
+			<p id='stop'><a href='http://en.wikipedia.org/wiki/The_Muppets_'>http://en.wikipedia.org/wiki/The_Muppets_</a>(film)</p>
+			<p>twitipedia turns links like
+			<a class='example' href='http://en.wikipedia.org/wiki/The_Muppets_(film)'>http://en.wikipedia.org/wiki/The_Muppets_(film)</a></p>
+			<p>into links like
+			<a class='example' href='http://en.wikipedia.org/wiki/The_Muppets_%28film%29'>http://en.wikipedia.org/wiki/The_Muppets_%28film%29</a></p>
+		</div>
+		<p><strong>Why?</strong> Because when pasting the addresses of Wikipedia articles with parentheses (round brackets) in them to Twitter, the links come out broken (because Twitter<a href="#targ">*</a> interprets the opening parenthesis as the end of the address, then shortens that broken link for use in your tweet).</p>
+		<p><strong>What?</strong> twitipedia simply replaces any parentheses (round brackets) with alternative characters and then gives the user the opportunity to copy the Twitter-safe address to the clipboard.</p>
+		<p><strong>How?</strong> Drag it to your bookmarks toolbar to install; click the button to use (when on a Wikipedia article page). To remove it, just remove the bookmark.</p>
+		<p><strong>Who?</strong> This is <a href='http://twitter.com/matatk'>matatk</a>'s first bookmarklet (and <a href='http://github.com'>github</a> foray).</p>
+		<p><strong>Note:</strong> tested on Safari, Firefox and Chrome; not on Internet Explorer.</p>
+		<p id='targ'>* at least the <a href='http://itunes.apple.com/gb/app/twitter/id409789998'>official Mac client</a></p>
+		{% include footer.html %}
+	</body>
+</html>

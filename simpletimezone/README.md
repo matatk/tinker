@@ -1,4 +1,4 @@
-SimpleTimeZone
+SimpleTimezone
 ===============
 
 `getdata.py`
@@ -8,7 +8,7 @@ SimpleTimeZone
 : contains the latest results of running `getdata.py`.
 
 `simpletimezone.js`
-: the main SimpleTimeZone calculation code.
+: the main SimpleTimezone calculation code.
 
 `index.html`
 : is the UI.
