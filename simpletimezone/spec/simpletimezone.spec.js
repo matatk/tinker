@@ -1,3 +1,13 @@
+try {
+	window
+} catch(e) {
+	var testdata = require('../testdata.js');
+	var test_matches = testdata.test_matches;
+	var test_utc_offsets = testdata.test_utc_offsets;
+
+	var simpletimezone = require('../simpletimezone.js');
+}
+
 describe('SimpleTimezone', function() {
 	it('matches timezones by abbreviation or name', function() {
 		var test_rec;

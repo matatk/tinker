@@ -49,5 +49,5 @@
 		return SimpleTimezone;
 	})();
 
-	window['SimpleTimezone'] = new SimpleTimezone(new OffsetGetter().get());
+	this['SimpleTimezone'] = new SimpleTimezone(new OffsetGetter().get());
 }).call(this);

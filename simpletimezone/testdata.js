@@ -1,5 +1,11 @@
+try {
+	var exports = window
+} catch(e) {
+	//
+}
+
 // Matching zone information
-var test_matches = [
+exports.test_matches = [
 	{
 		input: "xyz",
 		matches: {}
@@ -142,7 +148,7 @@ var test_matches = [
 
 
 // UTC offsets; thanks to my colleague Anne Scallan for providing these
-var test_utc_offsets = [
+exports.test_utc_offsets = [
 	{
 		timezone: "est-eastern-standard-time-north-america",
 		local: 8,
