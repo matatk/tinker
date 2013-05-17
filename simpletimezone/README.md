@@ -13,11 +13,11 @@ SimpleTimezone
 `index.html`
 : is the UI.
 
-`test.html`
-: the unit test loader.
+`test-qunit.html`, `test-jasmine.html`
+: the unit test loaders.
 
-`test.js`
-: is the test script that is run by the test loader.
+`test-qunit.js`, `spec/simpletimezone.spec.js`
+: the test scripts run by the web runners or jasmine-node.
 
 `testdata.js`
-: is the data used by the test script.
+: is the data used by the test scripts.

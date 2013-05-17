@@ -1,3 +1,4 @@
+// Cope with running either in-browser or on node
 try {
 	window
 } catch(e) {
