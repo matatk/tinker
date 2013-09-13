@@ -136,8 +136,9 @@ title: Tweet Drafter
         rows="4"
         cols="35"
         onkeyup="keyed(this, false);"
-        title="Draft tweet"
+        aria-label="Draft tweet"
         ></textarea>
+      <!-- Note: VoiceOver prefers aria-label to title for labelling. -->
 
       <!-- The following live regions cause changes to be announced. -->
       <!-- "status" regions have a default aria-live level of 'polite'. -->
