@@ -4,125 +4,168 @@ title: Tweet Drafter
 ---
 <!DOCTYPE html>
 <html lang="en-GB">
-	<head>
-		<title>{{ page.title }}</title>
-		<style type='text/css'>
-			body {
-				font-family: Verdana, sans-serif;
-				font-size: 2em;
-				line-height: 1.5em;
-				text-align: center;
-			}
+  <head>
+    <title>{{ page.title }}</title>
+    <style type='text/css'>
+      body {
+        font-family: Verdana, sans-serif;
+        font-size: 2em;
+        line-height: 1.5em;
+        text-align: center;
+        width: 45em;
+        margin: auto;
+      }
 
-			textarea {
-				font-size: inherit;
-				border: 1px solid black;
-				resize: none;
-			}
+      textarea {
+        font-size: inherit;
+        border: 1px solid black;
+        resize: none;
+      }
 
-			input[type=checkbox] {
-				font-size: inherit;
-			}
+      input {
+        font-size: inherit;
+      }
 
-			{% include footer.css %}
-		</style>
-		<script type='text/javascript'>
-			var TWEET_LENGTH = 140;
-			var LEN_MEDIA = 22;
-			var LEN_HTTP = 22;
-			var LEN_HTTPS = 23;
-			var picture = false;
-			var cached = '';
+      aside {
+        width: 35em;
+        font-size: 0.8em;
+        color: #777;
+        text-align: left;
+        margin: auto;
+      }
 
-			// See <https://dev.twitter.com/blog/upcoming-tco-changes>
-			// for info on size limits.
+      .ohnoes {
+        color: red;
+        border: 1px solid red;
+      }
 
-			function media_toggle() {
-				if( picture ) {
-					picture = false;
-				} else {
-					picture = true;
-				}
+      {% include footer.css %}
+    </style>
+    <script type='text/javascript'>
+      // Size limits info: <https://dev.twitter.com/blog/upcoming-tco-changes>
+      var TWEET_LENGTH = 140;
+      var LEN_MEDIA = 22;
+      var LEN_HTTP = 22;
+      var LEN_HTTPS = 23;
 
-				keyed(document.getElementById("draft"), true);
-			}
+      var contains_media = false;
+      var previous_tweet_text = '';
+      var previous_url_count = 0;
 
-			function keyed(draft, toggled) {
-				var url_regex = /(https?:\/\/[^\s]+)/g;
-				var urls_status = document.getElementById("urls");
-				var remaining;
-				var match;
+      // Trigger an update when the media checkbox is toggled
+      function media_toggle() {
+        contains_media = !contains_media;
+        keyed(document.getElementById("draft"), true);
+      }
 
-				// Protect against keypresses that don't change the string
-				if( !toggled && draft.value == cached ) {
-					return
-				}
-				cached = draft.value;
+      // Update the remaining character count, either because a key was
+      // pressed, or the media toggle was activated.
+      // Arguments:
+      //  - draft: reference to the element that contains the draft
+      //  - toggle: boolean indicating if the toggle was switched
+      function keyed(draft, toggled) {
+        var url_regex = /(https?:\/\/[^\s]+)/g;
+        var match;
+        var char_count_e = document.getElementById("char_count");
+        var url_count_e = document.getElementById("url_count");
+        var remaining = 0;
+        var url_count = 0;
 
-				// Get base length, taking media into account
-				remaining = TWEET_LENGTH - draft.value.length;
-				if( picture ) {
-					remaining -= LEN_MEDIA;
-				}
+        // Protect against keypresses that don't change the string
+        if( !toggled && draft.value == previous_tweet_text ) {
+          return
+        } else {
+          previous_tweet_text = draft.value;
+        }
 
-				// Find URLs and begin updating match number
-				match = draft.value.match(url_regex);
-				if( match ) {
-					for( var i = 0; i < match.length; i++ ) {
-						// Swap actual length of link for "shortened" version
-						var url = match[i];
-						remaining += url.length;
-						switch( url[4] ) {
-							case ':':	remaining -= LEN_HTTP;
-										break;
-							case 's':	remaining -= LEN_HTTPS;
-										break;
-							default:	alert("Malformed link: '" + url + "'");
-						}
-					}
+        // Get base length, taking media into account
+        remaining = TWEET_LENGTH - draft.value.length;
+        if( contains_media ) {
+          remaining -= LEN_MEDIA;
+        }
 
-					urls_status.innerHTML = match.length;
-				} else {
-					urls_status.innerHTML = "0";
-				}
+        // Find URLs and begin updating match number
+        match = draft.value.match(url_regex);
+        if( match ) {
+          for( var i = 0; i < match.length; i++ ) {
+            // Swap actual length of link in textarea for "shortened" version
+            var url = match[i];
+            remaining += url.length;
+            switch( url[4] ) {
+              case ':':  remaining -= LEN_HTTP;
+                    break;
+              case 's':  remaining -= LEN_HTTPS;
+                    break;
+              default:  alert("Something borked horribly with: '" + url + "'");
+            }
+          }
+          url_count = match.length;
+        } else {
+          url_count = 0;
+        }
 
-				// Update statuses
-				document.getElementById("charcount")
-					.innerHTML = remaining + " characters remaining";
+        // Should we update the link count?
+        // (We don't want to change a live region to what it was already.)
+        if( url_count != previous_url_count ) {
+          url_count_e.innerHTML = url_count;
+          previous_url_count = url_count;
+        }
 
-				urls_status.innerHTML += " links in your tweet"; 
-			}
-		</script>
-		{% include track.html %}
-	</head>
-	<body>
-		<header>
-			<h1>{{ page.title }}</h1>
-		</header>
-		<main role="main">
-			<p>Draft your tweets before sending (does not record any data).</p>
+        // Update character count
+        char_count_e.innerHTML = remaining;
+        if( remaining < 0 ) {
+          char_count_e.className = "ohnoes";
+        } else {
+          char_count_e.className = null;
+        }
+      }
+    </script>
+    {% include track.html %}
+  </head>
+  <body>
+    <header>
+      <h1>{{ page.title }}</h1>
+    </header>
+    <main role="main">
+      <input id="has_media" type="checkbox" onchange="media_toggle();">
+      <label for="has_media">tweet will include a photo or other media</label>
+      <br/>
 
-			<textarea
-				id="draft"
-				rows="4"
-				cols="35"
-				onkeyup="keyed(this, false);"
-				aria-label="Draft tweet"
-				autofocus></textarea>
-			<br/>
-			<label>
-				<input
-					type="checkbox"
-					onchange="media_toggle();">
-				tweet includes a picture or other media
-			</label>
-			<div aria-live="polite">
-				<span id="charcount">140 characters remaining</span>
-			</div>
-			<div aria-live="assertive">
-				<span id="urls">0 links in your tweet</span>
-			</div>
-		</main>
-		{% include footer.html %}
-	</body>
+      <textarea
+        id="draft"
+        rows="4"
+        cols="35"
+        onkeyup="keyed(this, false);"
+        title="Draft tweet"
+        ></textarea>
+
+      <!-- The following live regions cause changes to be announced. -->
+      <!-- "status" regions have a default aria-live level of 'polite'. -->
+      <!-- Setting the "atomic" property causes the whole region to be
+           announced, as opposed to just the part(s) that changed. This
+           is usually a very bad idea (overly verbose) but in this case,
+           it lets the user know which number means what. -->
+      <div role="status" aria-atomic="true">
+        <span id="url_count">0</span> links in your tweet
+      </div>
+      <div role="status" aria-atomic="true">
+        <span id="char_count">140</span> characters remaining
+      </div>
+
+      <aside>
+        <p>Steps taken to afford accessibility:</p>
+        <ul>
+          <li>Characters remaining are announced.</li>
+          <li>Number of links are announced.</li>
+          <li>Running out of characters is highlighted by more than colour alone.</li>
+        </ul>
+
+        <p>Limitations:</p>
+        <ul>
+          <li>It will match links that don't have a space before them.</li>
+        </ul>
+      </aside>
+    </main>
+    {% include footer.html %}
+  </body>
 </html>

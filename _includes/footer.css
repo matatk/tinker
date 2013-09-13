@@ -1,6 +1,26 @@
+/* Thanks to <http://mystrd.at/modern-clean-css-sticky-footer/> :-) */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /*margin: 0 0 100px; /* bottom = footer height */
+  margin-bottom: 100px; /* bottom = footer height */
+}
+
 footer {
-	font-size: 0.8em;
-	position: absolute;
-	bottom: 0;
-	overflow: hidden;
+  font-size: 0.8em;  /* my additions */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+}
+
+/* my addition */
+footer p {
+  margin-left: 1em;
+  margin-right: 1em;
 }
