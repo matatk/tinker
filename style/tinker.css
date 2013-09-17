@@ -5,7 +5,7 @@ body {
 	margin-right: auto;
 	margin-top: 0;
 	margin-bottom: 5%;
-	background-color: #e9e9ef;
+	background-color: #eee;
 	color: #333;
 	font-family: Verdana, Geneva, sans-serif;
 	font-size: 1.2em;
@@ -40,7 +40,7 @@ a {
 	-o-transition: 0.25s;
 	-webkit-transition: 0.25s;
 }
-a:hover {
+a:focus, a:hover {
 	background-color: #999;
 	color: #e9e9ef;
 }

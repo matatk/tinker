@@ -16,14 +16,27 @@ title: Tweet Drafter
         margin: auto;
       }
 
+      /* Highlight for input and anchor elements, for focus and hover. */
+      /* Outlines do not take up any space, so do not push other elements
+         around the page, as newly-added borders would. */
+      input:focus, input:hover,
+      textarea:focus, textarea:hover,
+      a:focus, a:hover {
+        outline: 4px solid yellow;
+        /* This does not display in Firefox in Windows high contrast mode. */
+      }
+
       textarea {
         font-size: inherit;
         border: 1px solid black;
+        /* Firefox fails to draw the border in Windows high contrast mode:
+           https://bugzilla.mozilla.org/show_bug.cgi?id=452800 */
         resize: none;
       }
 
       input {
         font-size: inherit;
+        border: 1px solid black;
       }
 
       aside {
@@ -42,7 +55,7 @@ title: Tweet Drafter
       {% include footer.css %}
     </style>
     <script type='text/javascript'>
-      // Size limits info: <https://dev.twitter.com/blog/upcoming-tco-changes>
+      // Size limits info: https://dev.twitter.com/blog/upcoming-tco-changes
       var TWEET_LENGTH = 140;
       var LEN_MEDIA = 22;
       var LEN_HTTP = 22;
@@ -127,6 +140,9 @@ title: Tweet Drafter
       <h1>{{ page.title }}</h1>
     </header>
     <main role="main">
+      <!-- Some assistive technologies (ATs) don't like the label-wraps-
+           control idiom and end up repeating the label when navigating
+           the page manually. -->
       <input id="has_media" type="checkbox" onchange="media_toggle();">
       <label for="has_media">tweet will include a photo or other media</label>
       <br/>
@@ -138,7 +154,8 @@ title: Tweet Drafter
         onkeyup="keyed(this, false);"
         aria-label="Draft tweet"
         ></textarea>
-      <!-- Note: VoiceOver prefers aria-label to title for labelling. -->
+      <!-- Note: should be able to use @title rather than @aria-label but
+           for <https://bugs.webkit.org/show_bug.cgi?id=119695>. -->
 
       <!-- The following live regions cause changes to be announced. -->
       <!-- "status" regions have a default aria-live level of 'polite'. -->
@@ -158,12 +175,13 @@ title: Tweet Drafter
         <ul>
           <li>Characters remaining are announced.</li>
           <li>Number of links are announced.</li>
-          <li>Running out of characters is highlighted by more than colour alone.</li>
+          <li>Running out of characters is highlighted by more than colour alone (a border is used for the highlight, too).</li>
+          <li>Highlight for keyboard-focussed or mouse-hovered control or link.</li>
         </ul>
 
         <p>Limitations:</p>
         <ul>
-          <li>It will match links that don't have a space before them.</li>
+          <li>It will count links that don't have a space before them.</li>
         </ul>
       </aside>
     </main>
