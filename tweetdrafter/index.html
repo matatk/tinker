@@ -22,7 +22,7 @@ title: Tweet Drafter
       input:focus, input:hover,
       textarea:focus, textarea:hover,
       a:focus, a:hover {
-        outline: 4px solid yellow;
+        outline: 4px solid #FE0;
         /* This does not display in Firefox in Windows high contrast mode. */
       }
 
@@ -71,6 +71,14 @@ title: Tweet Drafter
         keyed(document.getElementById("draft"), true);
       }
 
+      // Update the contents of a span of text.
+      // Note that Internet Explorer doesn't tell Assistive Technologies
+      // (ATs) about .innerHTML changes.
+      function replace_text(element, content) {
+        // We expect the passed-in element to be a <span> containing only text
+        element.firstChild.data = content;
+      }
+
       // Update the remaining character count, either because a key was
       // pressed, or the media toggle was activated.
       // Arguments:
@@ -87,9 +95,8 @@ title: Tweet Drafter
         // Protect against keypresses that don't change the string
         if( !toggled && draft.value == previous_tweet_text ) {
           return
-        } else {
-          previous_tweet_text = draft.value;
         }
+        previous_tweet_text = draft.value;
 
         // Get base length, taking media into account
         remaining = TWEET_LENGTH - draft.value.length;
@@ -120,12 +127,18 @@ title: Tweet Drafter
         // Should we update the link count?
         // (We don't want to change a live region to what it was already.)
         if( url_count != previous_url_count ) {
-          url_count_e.innerHTML = url_count;
+          url_count_e = replace_text(url_count_e, url_count);
           previous_url_count = url_count;
         }
 
         // Update character count
-        char_count_e.innerHTML = remaining;
+        // We update only the character/link counts, rather than the whole
+        // text in the live region <div>s.
+        // However, NVDA doesn't support aria-atomic, which means that to get
+        // it to announce the whole "x links in your tweet" or count <div>,
+        // we would have to update the whole text, not just that which
+        // changed.  However this would be too ugly a hack; awaiting fix.
+        char_count_e = replace_text(char_count_e, remaining);
         if( remaining < 0 ) {
           char_count_e.className = "ohnoes";
         } else {
@@ -140,7 +153,7 @@ title: Tweet Drafter
       <h1>{{ page.title }}</h1>
     </header>
     <main role="main">
-      <!-- Some assistive technologies (ATs) don't like the label-wraps-
+      <!-- Some Assistive Technologies (ATs) don't like the label-wraps-
            control idiom and end up repeating the label when navigating
            the page manually. -->
       <input id="has_media" type="checkbox" onchange="media_toggle();">
