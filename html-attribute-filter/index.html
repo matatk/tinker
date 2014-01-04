@@ -63,9 +63,6 @@ title: HTML Attribute Filter
         LONG_ATTRIBUTES = [];
         analyse_clean_controls();
         analyse_find_attributes();
-        //console.log('---------');
-        //console.log(ATTRIBUTES);
-        //console.log(LONG_ATTRIBUTES);
         analyse_make_controls();
       }
 
@@ -173,7 +170,6 @@ title: HTML Attribute Filter
       //
 
       function filter() {
-        //console.log('---------');
         for( var attribute in ATTRIBUTES ) {
           if( ATTRIBUTES.hasOwnProperty(attribute) ) {
             var selector = 'input[name="' + attribute + '"]:checked';
@@ -184,7 +180,6 @@ title: HTML Attribute Filter
       }
 
       function filter_core(attribute, instances, mode) {
-        //console.log('filter_core: attr: ' + attribute + '; instances: ' + instances + '; mode: ' + mode);
         var limit = get_quoted_limit();
 
         for( var i = 0; i < instances.length; i++ ) {
@@ -217,7 +212,11 @@ title: HTML Attribute Filter
         }
 
         function elide(attribute, instance, text) {
-          return replace_core(attribute, instance, text, false);
+          if( instance.indexOf("...") > -1 ) {
+            return text;
+          } else {
+            return replace_core(attribute, instance, text, false);
+          }
         }
 
         function remove(attribute, instance, text) {
