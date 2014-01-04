@@ -1,0 +1,341 @@
+---
+layout: nil
+title: HTML Attribute Filter
+---
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <title>{{ page.title }}</title>
+    <style>
+      {% include standard.css %}
+
+      body {
+        margin: 1em;
+      }
+
+      button {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      table {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      th, td {
+        padding: 0.25em;
+      }
+
+      td:not(:first-child) {
+        text-align: center;
+      }
+
+      tbody tr:nth-child(odd) {
+        background-color: #EEE;
+      }
+
+      {% include footer.css %}
+    </style>
+    <script>
+      var LEAVE = 'leave';
+      var ELIDE_LONG = 'elide-long';
+      var ELIDE_ALL = 'elide-all';
+      var REMOVE = 'remove';
+
+      var PRETTY = {
+        LEAVE: 'Leave',
+        ELIDE_LONG: 'Elide long',
+        ELIDE_ALL: 'Elide all',
+        REMOVE: 'Remove'
+      };
+
+      var ATTRIBUTES;
+      var LONG_ATTRIBUTES;
+
+
+      //
+      // Analyse Stage
+      //
+
+      function analyse() {
+        ATTRIBUTES = {};
+        LONG_ATTRIBUTES = [];
+        analyse_clean_controls();
+        analyse_find_attributes();
+        //console.log('---------');
+        //console.log(ATTRIBUTES);
+        //console.log(LONG_ATTRIBUTES);
+        analyse_make_controls();
+      }
+
+      function analyse_clean_controls() {
+        // Remove all existing data rows from the table
+        var container = document.getElementById('attribute-list-body');
+        while( container.firstChild ) {
+          container.removeChild(container.firstChild);
+        }
+      }
+
+      function analyse_find_attributes() {
+        // Find unique attributes (key-value pairs)
+        var attribute_regex = /(\w+|data-\w+)=("[^"]+"|'[^']+')/g;
+        var match;
+        var code = get_code_element();
+        var limit = get_quoted_limit();
+        var key;
+        var value;
+
+        while( match = attribute_regex.exec(code.value) ) {
+          key = match[1];
+          value = match[2];
+
+          // Just for convenience, record if this attribute has a long value
+          if( value.length > limit ) {
+            if( LONG_ATTRIBUTES.indexOf(key) === -1 ) {
+              LONG_ATTRIBUTES.push(key);
+            }
+          }
+
+          // Add the attribute to the attributes hash
+          // ...initialisng the values list for this attribute if need be
+          if( !(key in ATTRIBUTES)) {
+            ATTRIBUTES[key] = [];
+          }
+          // ...and only if this value hasn't been added before
+          if( ATTRIBUTES[key].indexOf(value) === -1 ) {
+            ATTRIBUTES[key].push(value);
+          }
+        }
+      }
+
+      function analyse_make_controls() {
+        // Create and append controls for certain attributes
+        var container = document.getElementById('attribute-list-body');
+
+        for( var attribute in ATTRIBUTES ) {
+          if( ATTRIBUTES.hasOwnProperty(attribute) ) {
+            var row = document.createElement('tr');
+
+            var name = document.createElement('td');
+            var name_text = document.createTextNode(attribute);
+            name.appendChild(name_text);
+            row.appendChild(name);
+
+            var leave = document.createElement('td');
+            var leave_radio = make_radio(attribute, LEAVE);
+            leave.appendChild(leave_radio);
+            row.appendChild(leave);
+
+            var elide_long = document.createElement('td');
+            if( LONG_ATTRIBUTES.indexOf(attribute) > -1 ) {
+              var elide_long_radio = make_radio(attribute, ELIDE_LONG);
+              elide_long.appendChild(elide_long_radio);
+            }
+            row.appendChild(elide_long);
+
+            var elide_all = document.createElement('td');
+            var elide_all_radio = make_radio(attribute, ELIDE_ALL);
+            elide_all.appendChild(elide_all_radio);
+            row.appendChild(elide_all);
+
+            var remove = document.createElement('td');
+            var remove_radio = make_radio(attribute, REMOVE);
+            remove.appendChild(remove_radio);
+            row.appendChild(remove);
+
+            container.appendChild(row);
+          }
+        }
+      }
+
+      function make_radio(attribute, mode) {
+        var radio = document.createElement('input');
+        radio.type = 'radio';
+        if( LONG_ATTRIBUTES.indexOf(attribute) > -1 ) {
+          radio.checked = mode === ELIDE_LONG;
+        } else {
+          radio.checked = mode === LEAVE;
+        }
+        radio.name = attribute;
+        radio.value = mode;
+        radio.title = radio_title(PRETTY[mode], attribute);
+        return radio;
+      }
+
+      function radio_title(beginning, attribute) {
+        return beginning + ' ' + attribute + ' attributes';
+      }
+
+
+      //
+      // Filter Stage
+      //
+
+      function filter() {
+        //console.log('---------');
+        for( var attribute in ATTRIBUTES ) {
+          if( ATTRIBUTES.hasOwnProperty(attribute) ) {
+            var selector = 'input[name="' + attribute + '"]:checked';
+            var choice = document.querySelector(selector).value;
+            filter_core(attribute, ATTRIBUTES[attribute], choice);
+          }
+        }
+      }
+
+      function filter_core(attribute, instances, mode) {
+        //console.log('filter_core: attr: ' + attribute + '; instances: ' + instances + '; mode: ' + mode);
+        var limit = get_quoted_limit();
+
+        for( var i = 0; i < instances.length; i++ ) {
+          var instance = instances[i];
+          
+          switch( mode ) {
+            case LEAVE:
+              break;
+
+            case ELIDE_LONG:
+              if( instance.length > limit ) {
+                // drop down to ELIDE_ALL
+              } else {
+                break;
+              }
+
+            case ELIDE_ALL:
+              var code = get_code_element();
+              code.value = elide(attribute, instance, code.value);
+              break;
+
+            case REMOVE:
+              var code = get_code_element();
+              code.value = remove(attribute, instance, code.value);
+              break;
+
+            default:
+              alert('filter_core error invalid mode: attr: ' + attribute + '; instance: ' + instance + '; mode: ' + mode);
+          }
+        }
+
+        function elide(attribute, instance, text) {
+          return replace_core(attribute, instance, text, false);
+        }
+
+        function remove(attribute, instance, text) {
+          return replace_core(attribute, instance, text, true);
+        }
+
+        function replace_all(find, replace, text) {
+          return text.replace(new RegExp(find, 'g'), replace);
+        }
+
+        function replace_core(attribute, instance, text, remove) {
+          var search_end = ' ' + attribute + '=' + instance + '>';
+          var search_middle = ' ' + attribute + '=' + instance + ' ';
+          var output = text;
+
+          if( remove ) {
+            var replace = '';
+          } else {
+            var replace = ' ' + attribute + '="..."';
+          }
+
+          while( output.indexOf(search_end) > -1 ) {
+            output = output.replace(search_end, replace + '>');    
+          }
+          while( output.indexOf(search_middle) > -1 ) {
+            output = output.replace(search_middle, replace + ' ');
+          }
+          return output;
+        }
+      }
+
+
+      //
+      // Common Utility Functions
+      //
+
+      function get_code_element() {
+        return document.getElementById('code');
+      }
+
+      function get_quoted_limit() {
+        var len_elide = document.getElementById('len_elide');
+        var limit = parseInt(len_elide.value);
+        return limit + 2;
+      }
+    </script>
+    {% include track.html %}
+  </head>
+  <body>
+    <header>
+      <h1>{{ page.title }}</h1>
+    </header>
+    <main role="main">
+      <p>Paste in indented code; this will elide/remove attributes. <a href="#howto">Help below</a>.</p>
+
+      <textarea
+        id="code"
+        rows="10"
+        cols="45"
+        aria-label="Code">
+&lt;div id="test" data-foo='bar'&gt;
+  &lt;ul role="presentation" class="atestmenu" data-cat="spot"&gt;
+    &lt;li&gt;&lt;a id='themenuitem1' href="#" onclick='javascript:alert("hello1");'&gt;Menu item 1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a id='themenuitem2' href="#" onclick='javascript:alert("hello2");'&gt;Menu item 2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a id='themenuitem3' href="#" onclick='javascript:alert("hello3");'&gt;Menu item 3&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+      </textarea>
+
+      <div class="form">
+        <label for="len_elide">Offer to elide attributes longer than</label>
+        <input
+          id="len_elide"
+          type="text"
+          size="3"
+          value="10"
+          aria-describedby="len_elide_desc">
+        <span id="len_elide_desc">characters</span>  <!-- tabindex -1? -->
+      </div>
+
+      <button onclick="analyse();">Analyse Code</button>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Leave</th>
+            <th>Elide long</th>
+            <th>Elide all</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody id='attribute-list-body'>
+        </tbody>
+      </table>
+
+      <button onclick="filter();">Filter Code</button>
+
+      <h2 id="howto">How to use</h2>
+      <p>
+        This will remove attributes from HTML code or elide them (replace their values with ellipses).
+      </p>
+      <ol>
+        <li>Paste some indented HTML code into the text area.</li>
+        <li>Optionally change the default cut-off for &quot;long&quot; attribute values using the text box.</li>
+        <li>Press <code>Analyse Code</code>; the attributes in the code will be listed in the table below the button.</li>
+        <li>Choose how you want to filter each value of each attribute; either&hellip;
+          <ul>
+            <li><strong>leave</strong> it alone (the default for short attributes),</li>
+            <li><strong>elide it if it's long</strong> (the default for long attributes),</li>
+            <li><strong>elide it anyway</strong>, or</li>
+            <li><strong>remove</strong> the attribute and value.</li>
+          </ul>
+        </li>
+        <li>Press <code>Filter Code</code>; the code in the text area will be modified accordingly.</li>
+        <li>Repeat this process as often as you like.</li>
+      </ul>
+    </main>
+    {% include footer.html %}
+  </body>
+</html>

@@ -1,0 +1,29 @@
+body {
+  font-family: Verdana, sans-serif;
+  font-size: 2em;
+  line-height: 1.5em;
+}
+
+/* Highlight for input and anchor elements, for focus and hover. */
+/* Outlines do not take up any space, so do not push other elements
+   around the page, as newly-added borders would. */
+input:focus, input:hover,
+textarea:focus, textarea:hover,
+button:focus, button:hover,
+a:focus, a:hover {
+  outline: 4px solid #FE0;
+  /* This does not display in Firefox in Windows high contrast mode. */
+}
+
+textarea {
+  font-size: inherit;
+  border: 1px solid black;
+  /* Firefox fails to draw the border in Windows high contrast mode:
+     https://bugzilla.mozilla.org/show_bug.cgi?id=452800 */
+  resize: none;
+}
+
+input, button {
+  font-size: inherit;
+  border: 1px solid black;
+}
