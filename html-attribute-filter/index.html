@@ -7,9 +7,14 @@ title: HTML Attribute Filter
   <head>
     <title>{{ page.title }}</title>
     <style>
+	  /* Standard styles */
+
       {% include standard.css %}
 
+	  /* Custom styles */
+
       body {
+		font-size: 1.5em; /* override standard behaviour in this case */
         margin: 1em;
       }
 
@@ -274,8 +279,8 @@ title: HTML Attribute Filter
 
       <textarea
         id="code"
-        rows="10"
-        cols="45"
+        rows="15"
+        cols="60"
         aria-label="Code">
 &lt;div id="test" data-foo='bar'&gt;
   &lt;ul role="presentation" class="atestmenu" data-cat="spot"&gt;
