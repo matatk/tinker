@@ -47,7 +47,7 @@ title: Tweet Drafter
       // (ATs) about .innerHTML changes.
       function replace_text(element, content) {
         // We expect the passed-in element to be a <span> containing only text
-        element.firstChild.data = content;
+        element.innerHTML = content;
       }
 
       // Update the remaining character count, either because a key was
@@ -147,10 +147,10 @@ title: Tweet Drafter
            announced, as opposed to just the part(s) that changed. This
            is usually a very bad idea (overly verbose) but in this case,
            it lets the user know which number means what. -->
-      <div role="status" aria-atomic="true">
+      <div role="status" aria-live="polite" aria-atomic="true">
         <span id="url_count">0</span> links in your tweet
       </div>
-      <div role="status" aria-atomic="true">
+      <div role="status" aria-live="polite" aria-atomic="true">
         <span id="char_count">140</span> characters remaining
       </div>
 
