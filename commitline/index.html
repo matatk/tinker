@@ -52,10 +52,27 @@ title: Commit Line
 
       <p>
         <label for="type">Commit type:</label>
-        <select id="type" onchange="update_select();">
+        <select id="type" onchange="update_commit_type();">
           <option value="red">Red</option>
           <option value="refactor">Refactor</option>
         </select>
+      </p>
+
+      <p>
+        <label for="quotes">Quote type:</label>
+        <select id="quotes" onchange="update_quote_type();">
+          <option value="double">Double</option>
+          <option value="single">Single</option>
+        </select>
+      </p>
+
+      <p>
+        <input
+          type="checkbox"
+          id="capitalise"
+          checked="true"
+          onchange="update_commit_line()";>
+        <label for="capitalise">Capitalise first letter</label>
       </p>
 
       <dl>
@@ -88,7 +105,9 @@ title: Commit Line
             type="text"
             id="commit-line"
             aria-labelledby="commit-line-label"
-            readonly></dd>
+            readonly>
+          <span id="remaining"></span>
+        </dd>
       </dl>
 
       <h2 id="help">Information</h2>
@@ -112,11 +131,28 @@ title: Commit Line
       return config[$('type').value];
     }
 
-    function update_select() {
-      var prefix = get_prefix();
-      var length_limit = config.limit - prefix.length - config.suffix.length;
+    function get_length_limit() {
+      return config.limit - get_prefix().length - config.suffix.length;
+    }
+
+    function get_quote() {
+      if ($('quotes').value == 'double') {
+        return '"';
+      } else if ($('quotes').value == 'single') {
+        return "'";
+      } else {
+        alert("Unexpected quote type: " + $('quotes').value);
+      }
+    }
+
+    function wrap_string(message) {
+      return get_quote() + get_prefix() + message + config.suffix + get_quote();
+    }
+
+    function update_commit_type() {
+      var length_limit = get_length_limit();
       $('indent-length').innerHTML = config.indent;
-      $('prefix').innerHTML = '"' + prefix + '"';
+      $('prefix').innerHTML = '"' + get_prefix() + '"';
       $('suffix').innerHTML = '"' + config.suffix + '"';
       $('limit').innerHTML = config.limit;
       $('message').maxLength = length_limit;
@@ -126,13 +162,23 @@ title: Commit Line
       update_commit_line();
     }
 
-    function update_commit_line() {
-      var message = $('message').value;
-      message = message.charAt(0).toUpperCase() + message.slice(1);
-      $('commit-line').value = get_prefix() + message + config.suffix;
+    function update_quote_type() {
+      update_commit_line();
     }
 
-    update_select();
+    function update_commit_line() {
+      var message = $('message').value;
+      if ($('capitalise').checked) {
+        message = message.charAt(0).toUpperCase() + message.slice(1);
+      }
+      $('commit-line').value = wrap_string(message);
+
+      $('remaining').innerHTML = '('
+        + (get_length_limit() - $('message').value.length)
+        + ' characters remaining)';
+    }
+
+    update_commit_type();
   </script>
   {% include footer.html %}
   </body>
