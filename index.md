@@ -4,6 +4,9 @@ title: tinker apps
 ---
 A collection of single-page tools to scratch itches and help me learn accessible development techniques.
 
+[Commit Line](commitline/)
+:Formats [test-driven development](http://en.wikipedia.org/wiki/Test-driven_development) commit messages.
+
 [HTML Attribute Filter](html-attribute-filter/)
 :Helps tidy up code excerpts from sites, to be used as examples when writing reports.
 

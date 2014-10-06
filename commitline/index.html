@@ -1,0 +1,139 @@
+---
+layout: nil
+title: Commit Line
+---
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <title>{{ page.title }}</title>
+    <style>
+      {% include standard.css %}
+      {% include footer.css %}
+
+      body {
+        font-size: 1.2em;
+      }
+
+      dt, dd {
+        display: inline;
+        margin: 0.25em;
+      }
+
+      dt:after {
+        content: ":";
+      }
+
+      dd:after {
+        content: "\A";
+        white-space: pre;
+      }
+
+      input[type=text] {
+        width: 40em;
+      }
+    </style>
+    <script>
+      var config = {
+        'indent': 4,
+        'limit': 75,
+        'red': 'RED ',
+        'refactor': 'REFACTOR ',
+        'suffix': '.'
+      };
+  </script>
+  {% include track.html %}
+  </head>
+  <body>
+    <header>
+      <h1>{{ page.title }}</h1>
+    </header>
+    <main role="main">
+      <p>Quickly check and format a commit message's top line (<a href="#help">help information</a>).</p>
+
+      <p>
+        <label for="type">Commit type:</label>
+        <select id="type" onchange="update_select();">
+          <option value="red">Red</option>
+          <option value="refactor">Refactor</option>
+        </select>
+      </p>
+
+      <dl>
+        <dt>Log command output indent</dt>
+        <dd id="indent-length"></dd>
+
+        <dt>Maximum line length</dt>
+        <dd id="limit"></dd>
+
+        <dt>Prefix</dt>
+        <dd id="prefix"></dd>
+
+        <dt>Suffix</dt>
+        <dd id="suffix"></dd>
+
+        <dt><span id="message-label">Commit message</span></dt>
+        <dd>
+          <input
+            type="text"
+            id="message"
+            aria-labelledby="message-label"
+            aria-describedby="chars"
+            onkeyup="update_commit_line();">
+          <span id="chars"></span>
+        </dd>
+
+        <dt><span id="commit-line-label">Final commit line</span></dt>
+        <dd>
+          <input
+            type="text"
+            id="commit-line"
+            aria-labelledby="commit-line-label"
+            readonly></dd>
+      </dl>
+
+      <h2 id="help">Information</h2>
+      <p>In <a href="http://en.wikipedia.org/wiki/Test-driven_development">Test-driven Development</a> there are three types of commits:</p>
+      <ul>
+        <li><p>&quot;red&quot; after a failing test/part-test;</p></li>
+        <li><p>&quot;green&quot; when that test/part passes and</p></li>
+        <li><p>&quot;refactor&quot; when changes are made to improve the code's quality along the lines of <a href="http://en.wikipedia.org/wiki/Don't_repeat_yourself">DRY</a>, <a href="http://en.wikipedia.org/wiki/Single_responsibility_principle">the single responsibility principle</a> and other such guidelines.</p></li>
+      </ul>
+      <p>Commits should alternate between &quot;red&quot; and &quot;green&quot;, with optional refactorings after a &quot;green&quot; commit.</p>
+      <p>It helps, particularly when performing a Test-driven Development kata, for the commit messages to tell a story (and, for katas, to be only one line, so they can be quickly read). This tool makes it easy to format them into sentences.</p>
+      <p><strong>Note:</strong> &quot;green&quot; commits do not need messages, as their purpose should be clear from the preceeding &quot;red&quot; commit.</p>
+      <p>There was some interesting information in this <a href="http://stackoverflow.com/questions/2290016/git-commit-messages-50-72-formatting">StackOverflow question and answers on git commit message formatting</a>.</p>
+    </main>
+  <script>
+    function $(id) {
+      return document.getElementById(id);
+    }
+
+    function get_prefix() {
+      return config[$('type').value];
+    }
+
+    function update_select() {
+      var prefix = get_prefix();
+      var length_limit = config.limit - prefix.length - config.suffix.length;
+      $('indent-length').innerHTML = config.indent;
+      $('prefix').innerHTML = '"' + prefix + '"';
+      $('suffix').innerHTML = '"' + config.suffix + '"';
+      $('limit').innerHTML = config.limit;
+      $('message').maxLength = length_limit;
+      $('chars').innerHTML = '(' + length_limit + ' characters allowed)'
+      // Apply new length restriction (in case it is shorter than before)
+      $('message').value = $('message').value.slice(0, length_limit);
+      update_commit_line();
+    }
+
+    function update_commit_line() {
+      var message = $('message').value;
+      message = message.charAt(0).toUpperCase() + message.slice(1);
+      $('commit-line').value = get_prefix() + message + config.suffix;
+    }
+
+    update_select();
+  </script>
+  {% include footer.html %}
+  </body>
+</html>
