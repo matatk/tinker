@@ -1,5 +1,5 @@
 ---
-layout: nil
+layout: null
 title: Commit Line
 ---
 <!DOCTYPE html>
@@ -50,32 +50,32 @@ title: Commit Line
     <main role="main">
       <p>Quickly check and format a commit message's top line (<a href="#help">help information</a>).</p>
 
-      <p>
-        <label for="type">Commit type:</label>
-        <select id="type" onchange="update_commit_type();">
-          <option value="red">Red</option>
-          <option value="refactor">Refactor</option>
-        </select>
-      </p>
-
-      <p>
-        <label for="quotes">Quote type:</label>
-        <select id="quotes" onchange="update_quote_type();">
-          <option value="double">Double</option>
-          <option value="single">Single</option>
-        </select>
-      </p>
-
-      <p>
-        <input
-          type="checkbox"
-          id="capitalise"
-          checked="true"
-          onchange="update_commit_line()";>
-        <label for="capitalise">Capitalise first letter</label>
-      </p>
-
       <dl>
+        <dt><label for="type">Commit type:</label></dt>
+        <dd>
+          <select id="type" onchange="update_commit_type();">
+            <option value="red">Red</option>
+            <option value="refactor">Refactor</option>
+          </select>
+        </dd>
+
+        <dt><label for="quotes">Quote type:</label>
+        <dd>
+          <select id="quotes" onchange="update_quote_type();">
+            <option value="double">Double</option>
+            <option value="single">Single</option>
+          </select>
+        </dd>
+
+        <dt><label for="capitalise">Capitalise first letter</label></dt>
+        <dd>
+          <input
+            type="checkbox"
+            id="capitalise"
+            checked="true"
+            onchange="update_commit_line();">
+        </dd>
+
         <dt>Log command output indent</dt>
         <dd id="indent-length"></dd>
 
@@ -88,23 +88,21 @@ title: Commit Line
         <dt>Suffix</dt>
         <dd id="suffix"></dd>
 
-        <dt><span id="message-label">Commit message</span></dt>
+        <dt><label for="message">Commit message</label></dt>
         <dd>
           <input
             type="text"
             id="message"
-            aria-labelledby="message-label"
             aria-describedby="chars"
             onkeyup="update_commit_line();">
           <span id="chars"></span>
         </dd>
 
-        <dt><span id="commit-line-label">Final commit line</span></dt>
+        <dt><label for="commit-line">Final commit line</label></dt>
         <dd>
           <input
             type="text"
             id="commit-line"
-            aria-labelledby="commit-line-label"
             readonly>
           <span id="remaining"></span>
         </dd>
