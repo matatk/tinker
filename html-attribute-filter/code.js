@@ -140,6 +140,7 @@ function filter() {
 			filterCore(attribute, ATTRIBUTES[attribute], choice)
 		}
 	}
+	analyse()
 }
 
 function filterCore(attribute, instances, mode) {
