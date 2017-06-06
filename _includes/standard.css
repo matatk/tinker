@@ -23,7 +23,6 @@ textarea {
   border: 1px solid black;
   /* Firefox fails to draw the border in Windows high contrast mode:
      https://bugzilla.mozilla.org/show_bug.cgi?id=452800 */
-  resize: none;
 }
 
 input, select, button {
