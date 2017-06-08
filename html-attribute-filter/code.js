@@ -16,6 +16,14 @@ const PRETTY = {
 let ATTRIBUTES
 let LONG_ATTRIBUTES
 
+const exampleCode = `<div id="test" data-foo='bar'>
+    <ul role="presentation" class="atestmenu" data-cat="spot">
+        <li><a id='themenuitem1' href="#" onclick='javascript:alert("hello1");'>Menu item 1</a></li>
+        <li><a id='themenuitem2' href="#" onclick='javascript:alert("hello2");'>Menu item 2</a></li>
+        <li><a id='themenuitem3' href="#" onclick='javascript:alert("hello3");'>Menu item 3</a></li>
+    </ul>
+</div>`
+
 
 //
 // Analyse Stage
@@ -112,7 +120,9 @@ function analyseMakeControls() {
 function makeRadio(attribute, mode) {
 	const radio = document.createElement('input')
 	radio.type = 'radio'
-	if( LONG_ATTRIBUTES.indexOf(attribute) > -1 ) {
+	if( isProtectedAttribute(attribute) ) {
+		radio.checked = mode === LEAVE
+	} else if( LONG_ATTRIBUTES.indexOf(attribute) > -1 ) {
 		radio.checked = mode === ELIDE_LONG
 	} else {
 		radio.checked = mode === LEAVE
@@ -125,6 +135,13 @@ function makeRadio(attribute, mode) {
 
 function radioTitle(beginning, attribute) {
 	return beginning + ' ' + attribute + ' attributes'
+}
+
+function isProtectedAttribute(attribute) {
+	if( attribute === 'id' || attribute === 'role' ) {
+		return document.getElementById('protect-' + attribute).checked
+	}
+	return false
 }
 
 
@@ -221,9 +238,30 @@ function getCodeElement() {
 	return document.getElementById('code')
 }
 
+function getSettingsControls() {
+	return document.querySelectorAll('#settings input')
+}
+
 function getQuotedLimit() {
 	const lenElide = document.getElementById('len_elide')
 	const limit = parseInt(lenElide.value)
 	return limit + 2
 }
 
+
+//
+// Get going
+//
+
+document.addEventListener('DOMContentLoaded', function() {
+	// Analyse the code whenever the code is changed
+	getCodeElement().addEventListener('input', analyse)
+	getCodeElement().value = exampleCode
+	analyse()  // doesn't get called when .value is changed
+
+	// Analyse the code whenever a setting is changed
+	const elements = getSettingsControls()
+	for (const element of elements) {
+		element.addEventListener('input', analyse)
+	}
+})

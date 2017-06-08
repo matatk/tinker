@@ -18,14 +18,7 @@ a:focus, a:hover {
   /* This does not display in Firefox in Windows high contrast mode. */
 }
 
-textarea {
-  font-size: inherit;
-  border: 1px solid black;
-  /* Firefox fails to draw the border in Windows high contrast mode:
-     https://bugzilla.mozilla.org/show_bug.cgi?id=452800 */
-}
-
-input, select, button {
+input, select, button, textarea, fieldset {
   font-size: inherit;
   border: 1px solid black;
 }

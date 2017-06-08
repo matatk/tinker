@@ -4,117 +4,111 @@ title: HTML Attribute Filter
 ---
 <!DOCTYPE html>
 <html lang="en-GB">
-  <head>
-    <title>{{ page.title }}</title>
-    <style>
-      /* Standard styles */
+	<head>
+		<title>{{ page.title }}</title>
+		<style>
+{% include standard.css %}
 
-      {% include standard.css %}
+body {
+	font-size: 1.5em; /* override standard behaviour in this case */
+	margin: 1em;
+}
 
-      /* Custom styles */
+button {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
 
-      body {
-        font-size: 1.5em; /* override standard behaviour in this case */
-        margin: 1em;
-      }
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
 
-      button {
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
-      }
+th, td {
+	padding: 0.25em;
+}
 
-      table {
-        border: 1px solid black;
-        border-collapse: collapse;
-      }
+td:not(:first-child) {
+	text-align: center;
+}
 
-      th, td {
-        padding: 0.25em;
-      }
+tbody tr:nth-child(odd) {
+	background-color: #EEE;
+}
 
-      td:not(:first-child) {
-        text-align: center;
-      }
+textarea {
+	width: 100%;
+}
 
-      tbody tr:nth-child(odd) {
-        background-color: #EEE;
-      }
+{% include footer.css %}
+		</style>
+		<script src="code.js"></script>
+		{% include track.html %}
+	</head>
+	<body>
+		<header>
+			<h1>{{ page.title }}</h1>
+		</header>
+		<main role="main">
+		<p>Paste in indented code; this will elide/remove attributes. <a href="#howto">Help below</a>.</p>
 
-      {% include footer.css %}
-    </style>
-	<script src="code.js"></script>
-    {% include track.html %}
-  </head>
-  <body>
-    <header>
-      <h1>{{ page.title }}</h1>
-    </header>
-    <main role="main">
-      <p>Paste in indented code; this will elide/remove attributes. <a href="#howto">Help below</a>.</p>
+		<textarea id="code" rows="15" cols="60" aria-label="Code"></textarea>
 
-      <textarea
-        id="code"
-        rows="15"
-        cols="60"
-        aria-label="Code">
-&lt;div id="test" data-foo='bar'&gt;
-  &lt;ul role="presentation" class="atestmenu" data-cat="spot"&gt;
-    &lt;li&gt;&lt;a id='themenuitem1' href="#" onclick='javascript:alert("hello1");'&gt;Menu item 1&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a id='themenuitem2' href="#" onclick='javascript:alert("hello2");'&gt;Menu item 2&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a id='themenuitem3' href="#" onclick='javascript:alert("hello3");'&gt;Menu item 3&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/div&gt;
-      </textarea>
+		<fieldset id="settings">
+			<legend>Settings</legend>
+			<div>
 
-      <div class="form">
-        <label for="len_elide">Offer to elide attributes longer than</label>
-        <input
-          id="len_elide"
-          type="text"
-          size="3"
-          value="10"
-          aria-describedby="len_elide_desc">
-        <span id="len_elide_desc">characters</span>  <!-- tabindex -1? -->
-      </div>
+				<label for="len_elide">Offer to elide attributes longer than</label>
+				<input id="len_elide" type="text" size="3" value="10" aria-describedby="len_elide_desc">
+				<span id="len_elide_desc">characters</span>  <!-- tabindex -1? -->
+			</div>
+			<fieldset>
+				<legend>Do not change these attributes by default</legend>
+				<div>
+					<label><input type="checkbox" id="protect-id" checked> <code>id</code></label>
+				</div>
+				<div>
+					<label><input type="checkbox" id="protect-role" checked> <code>role</code></label>
+				</div>
+			</fieldset>
+		</fieldset>
 
-      <button onclick="analyse();">Analyse Code</button>
+		<table>
+			<thead>
+				<tr>
+					<th>Attribute</th>
+					<th>Leave</th>
+					<th>Elide long</th>
+					<th>Elide all</th>
+					<th>Remove</th>
+				</tr>
+			</thead>
+			<tbody id='attribute-list-body'>
+			</tbody>
+		</table>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Attribute</th>
-            <th>Leave</th>
-            <th>Elide long</th>
-            <th>Elide all</th>
-            <th>Remove</th>
-          </tr>
-        </thead>
-        <tbody id='attribute-list-body'>
-        </tbody>
-      </table>
+		<button onclick="filter();">Filter Code</button>
 
-      <button onclick="filter();">Filter Code</button>
-
-      <h2 id="howto">How to use</h2>
-      <p>
-        This will remove attributes from HTML code or elide them (replace their values with ellipses).
-      </p>
-      <ol>
-        <li>Paste some indented HTML code into the text area.</li>
-        <li>Optionally change the default cut-off for &quot;long&quot; attribute values using the text box.</li>
-        <li>Press <code>Analyse Code</code>; the attributes in the code will be listed in the table below the button.</li>
-        <li>Choose how you want to filter each value of each attribute; either&hellip;
-          <ul>
-            <li><strong>leave</strong> it alone (the default for short attributes),</li>
-            <li><strong>elide it if it's long</strong> (the default for long attributes),</li>
-            <li><strong>elide it anyway</strong>, or</li>
-            <li><strong>remove</strong> the attribute and value.</li>
-          </ul>
-        </li>
-        <li>Press <code>Filter Code</code>; the code in the text area will be modified accordingly, and re-analysed.</li>
-        <li>Repeat this process as often as you like.</li>
-      </ul>
-    </main>
-    {% include footer.html %}
-  </body>
+		<h2 id="howto">How to use</h2>
+		<p>
+		This will remove attributes from HTML code or elide them (replace their values with ellipses).
+		</p>
+		<ol>
+			<li>Paste some indented HTML code into the text area.</li>
+			<li>Optionally change the default cut-off for &quot;long&quot; attribute values using the text box.</li>
+			<li>Press <code>Analyse Code</code>; the attributes in the code will be listed in the table below the button.</li>
+			<li>Choose how you want to filter each value of each attribute; either&hellip;
+				<ul>
+					<li><strong>leave</strong> it alone (the default for short attributes),</li>
+					<li><strong>elide it if it's long</strong> (the default for long attributes),</li>
+					<li><strong>elide it anyway</strong>, or</li>
+					<li><strong>remove</strong> the attribute and value.</li>
+				</ul>
+			</li>
+			<li>Press <code>Filter Code</code>; the code in the text area will be modified accordingly, and re-analysed.</li>
+			<li>Repeat this process as often as you like.</li>
+			</ul>
+		</main>
+		{% include footer.html %}
+	</body>
 </html>
