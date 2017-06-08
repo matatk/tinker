@@ -90,13 +90,15 @@ textarea {
 		<button onclick="filter();">Filter Code</button>
 
 		<h2 id="howto">How to use</h2>
-		<p>
-		This will remove attributes from HTML code or elide them (replace their values with ellipses).
-		</p>
+		<p>This will remove attributes from HTML code or elide them (replace their values with ellipses).</p>
 		<ol>
 			<li>Paste some indented HTML code into the text area.</li>
-			<li>Optionally change the default cut-off for &quot;long&quot; attribute values using the text box.</li>
-			<li>Press <code>Analyse Code</code>; the attributes in the code will be listed in the table below the button.</li>
+			<li>Optionally, you can change&hellip;
+				<ul>
+					<li>the default cut-off for &quot;long&quot; attribute values using the text box.</li>
+					<li>whether <code>id</code> and <code>role</code> attributes are protected from being elided by default (they can be helpful for "anchoring" oneself in the code).</li>
+				</ul>
+			</li>
 			<li>Choose how you want to filter each value of each attribute; either&hellip;
 				<ul>
 					<li><strong>leave</strong> it alone (the default for short attributes),</li>
@@ -105,9 +107,10 @@ textarea {
 					<li><strong>remove</strong> the attribute and value.</li>
 				</ul>
 			</li>
-			<li>Press <code>Filter Code</code>; the code in the text area will be modified accordingly, and re-analysed.</li>
+			<li>Activate the <code>Filter Code</code> button; the code in the text area will be modified accordingly, and re-analysed.</li>
 			<li>Repeat this process as often as you like.</li>
-			</ul>
+		</ol>
+		<p>For indenting code, <a href="http://htmlformatter.com/">HTML Formatter</a> is really good.</p>
 		</main>
 		{% include footer.html %}
 	</body>
