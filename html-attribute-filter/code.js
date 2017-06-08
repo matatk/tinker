@@ -6,12 +6,11 @@ const ELIDE_LONG = 'elide-long'
 const ELIDE_ALL = 'elide-all'
 const REMOVE = 'remove'
 
-const PRETTY = Object.freeze({
-	LEAVE: 'Leave',
-	ELIDE_LONG: 'Elide long',
-	ELIDE_ALL: 'Elide all',
-	REMOVE: 'Remove'
-})
+const PRETTY = {}
+PRETTY[LEAVE] = 'Leave'
+PRETTY[ELIDE_LONG] = 'Elide long'
+PRETTY[ELIDE_ALL] = 'Elide all'
+PRETTY[REMOVE] = 'Remove'
 
 const PROTECTED_ATTRIBUTES = Object.freeze(['id', 'role'])
 
@@ -131,12 +130,12 @@ function makeRadio(attribute, mode) {
 	}
 	radio.name = attribute
 	radio.value = mode
-	radio.title = radioTitle(PRETTY[mode], attribute)
+	radio.title = radioTitle(mode, attribute)
 	return radio
 }
 
-function radioTitle(beginning, attribute) {
-	return beginning + ' ' + attribute + ' attributes'
+function radioTitle(mode, attribute) {
+	return PRETTY[mode] + ' ' + attribute + ' attributes'
 }
 
 function isProtectedAttribute(attribute) {
