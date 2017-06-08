@@ -6,12 +6,14 @@ const ELIDE_LONG = 'elide-long'
 const ELIDE_ALL = 'elide-all'
 const REMOVE = 'remove'
 
-const PRETTY = {
+const PRETTY = Object.freeze({
 	LEAVE: 'Leave',
 	ELIDE_LONG: 'Elide long',
 	ELIDE_ALL: 'Elide all',
 	REMOVE: 'Remove'
-}
+})
+
+const PROTECTED_ATTRIBUTES = Object.freeze(['id', 'role'])
 
 let ATTRIBUTES
 let LONG_ATTRIBUTES
@@ -138,7 +140,7 @@ function radioTitle(beginning, attribute) {
 }
 
 function isProtectedAttribute(attribute) {
-	if( attribute === 'id' || attribute === 'role' ) {
+	if( PROTECTED_ATTRIBUTES.indexOf(attribute) > -1 ) {
 		return document.getElementById('protect-' + attribute).checked
 	}
 	return false
