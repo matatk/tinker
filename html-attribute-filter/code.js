@@ -82,39 +82,37 @@ function analyseMakeControls() {
 	// Create and append controls for certain attributes
 	const container = document.getElementById('attribute-list-body')
 
-	for( const attribute in ATTRIBUTES ) {
-		if( ATTRIBUTES.hasOwnProperty(attribute) ) {
-			const row = document.createElement('tr')
+	for( const attribute of Object.keys(ATTRIBUTES).sort() ) {
+		const row = document.createElement('tr')
 
-			const name = document.createElement('td')
-			const nameText = document.createTextNode(attribute)
-			name.appendChild(nameText)
-			row.appendChild(name)
+		const name = document.createElement('td')
+		const nameText = document.createTextNode(attribute)
+		name.appendChild(nameText)
+		row.appendChild(name)
 
-			const leave = document.createElement('td')
-			const leaveRadio = makeRadio(attribute, LEAVE)
-			leave.appendChild(leaveRadio)
-			row.appendChild(leave)
+		const leave = document.createElement('td')
+		const leaveRadio = makeRadio(attribute, LEAVE)
+		leave.appendChild(leaveRadio)
+		row.appendChild(leave)
 
-			const elideLong = document.createElement('td')
-			if( LONG_ATTRIBUTES.indexOf(attribute) > -1 ) {
-				const elideLongRadio = makeRadio(attribute, ELIDE_LONG)
-				elideLong.appendChild(elideLongRadio)
-			}
-			row.appendChild(elideLong)
-
-			const elideAll = document.createElement('td')
-			const elideAllRadio = makeRadio(attribute, ELIDE_ALL)
-			elideAll.appendChild(elideAllRadio)
-			row.appendChild(elideAll)
-
-			const remove = document.createElement('td')
-			const removeRadio = makeRadio(attribute, REMOVE)
-			remove.appendChild(removeRadio)
-			row.appendChild(remove)
-
-			container.appendChild(row)
+		const elideLong = document.createElement('td')
+		if( LONG_ATTRIBUTES.indexOf(attribute) > -1 ) {
+			const elideLongRadio = makeRadio(attribute, ELIDE_LONG)
+			elideLong.appendChild(elideLongRadio)
 		}
+		row.appendChild(elideLong)
+
+		const elideAll = document.createElement('td')
+		const elideAllRadio = makeRadio(attribute, ELIDE_ALL)
+		elideAll.appendChild(elideAllRadio)
+		row.appendChild(elideAll)
+
+		const remove = document.createElement('td')
+		const removeRadio = makeRadio(attribute, REMOVE)
+		remove.appendChild(removeRadio)
+		row.appendChild(remove)
+
+		container.appendChild(row)
 	}
 }
 
@@ -263,6 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Analyse the code whenever a setting is changed
 	const elements = getSettingsControls()
 	for (const element of elements) {
-		element.addEventListener('input', analyse)
+		element.addEventListener('click', analyse)
+		// Safari doesn't fire 'change' until it loses focus
 	}
 })
