@@ -4,6 +4,9 @@
     "browser": true
   },
   "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
   "root": true,
   "rules": {
     "block-scoped-var": "error",
@@ -37,7 +40,7 @@
     "no-undef": "error",
     "no-unexpected-multiline": "error",
     "no-unused-expressions": "error",
-    "no-unused-vars": "warn",
+    "no-unused-vars": "error",
     "no-use-before-define": [
       "error",
       {

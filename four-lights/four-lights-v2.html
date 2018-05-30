@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>There are four lights</title>
+		<style>
+body {
+	font-family: sans-serif;
+	font-size: 1.5em;
+}
+
+select, input, button, textarea, fieldset {
+	font-size: inherit;
+	border: 0.1em solid black;
+}
+
+button {
+	background-color: green;
+	color: white;
+}
+
+button[disabled] {
+	background-color: grey;
+	color: white;
+}
+
+textarea {
+	width: 100%;
+	height: 12em;
+	padding: 0.5em;
+	margin: 0;
+	margin-top: 0.5em;
+	box-sizing: border-box;
+	font-family: monospace;
+}
+
+.lights {
+	box-sizing: border-box;
+	background-color: black;
+	text-align: center;
+	font-size: 5em;
+	padding: 0.1em;
+	margin: 0;
+	text-shadow: 1px 1px white, -1px -1px white;
+	letter-spacing: 0.25em;
+	width: 100%;
+}
+
+.form, .option, fieldset {
+	display: inline-block;
+	margin-bottom: 0.5em;
+	width: 100%;
+	box-sizing: border-box;
+}
+		</style>
+	</head>
+	<body>
+		<input id="lights" type="text" class="lights">
+		<textarea id="code" class="option"></textarea>
+		<div class="form">
+			<label class="option">
+				Sample code:
+				<select id="demos" onchange="changeDemo(this)"></select>
+			</label>
+			<label class="option">
+				<input type="checkbox" onchange="changeSweep(this)">
+				Use current time
+			</label>
+			<fieldset>
+				<legend>Time sweep range</legend>
+				<label>
+					From: <input type="number" id="sweepFrom">
+				</label>
+				<label>
+					To: <input type="number" id="sweepTo">
+				</label>
+			</fieldset>
+		</div>
+		<button id="run" onclick="go()">Run code for current time</button>
+		<button id="run-day" onclick="goDay()">Run code over a day</button>
+		<script src="four-lights-v2.js"></script>
+	</body>
+</html>
