@@ -5,8 +5,6 @@
 // TODO
 //
 
-// - goDay() starts with the current time (whatever it is)
-// - disable all the UI first
 // - current time should be toggle, not checkbox?
 // - time sweep range
 
@@ -46,8 +44,6 @@ let stepDelay = 10
 const lights = document.getElementById('lights')
 const codeInput = document.getElementById('code')
 const sampleSelect = document.getElementById('demos')
-const goButton = document.getElementById('run')
-const goDayButton = document.getElementById('run-day')
 
 
 //
@@ -95,14 +91,14 @@ function _displayCore(hour, minute) {
 // Run the user code for the current time only
 function go() {
 	const codeToRun = codeInput.value
-	disableRunButtons()
+	disableInteractiveBits()
 	steps.length = 0
 
 	try {
 		eval(codeToRun)  // create all the steps quickly
 	} catch (error) {
 		alert(error)
-		enableRunButtons()
+		enableInteractiveBits()
 		return
 	}
 
@@ -113,19 +109,9 @@ function go() {
 // TODO option to run it between certain times
 function goDay() {
 	const codeToRun = codeInput.value
-	disableRunButtons()
+	disableInteractiveBits()
 	steps.length = 0
 
-	// Check if the code will work
-	try {
-		eval(codeToRun)
-	} catch (error) {
-		alert(error)
-		enableRunButtons()
-		return
-	}
-
-	// Now actually run it
 	for (let loopHour = 0; loopHour < 24; loopHour++) {
 		for (let loopMinute = 0; loopMinute < 60; loopMinute++) {
 			setTime(loopHour, loopMinute)
@@ -134,7 +120,7 @@ function goDay() {
 				eval(codeToRun)
 			} catch (error) {
 				alert(error)
-				enableRunButtons()
+				enableInteractiveBits()
 				return
 			}
 		}
@@ -156,7 +142,7 @@ function playStep() {
 		stepIndex++
 		setTimeout(playStep, stepDelay)
 	} else {
-		enableRunButtons()
+		enableInteractiveBits()
 	}
 }
 
@@ -165,14 +151,22 @@ function playStep() {
 // UI management
 //
 
-function disableRunButtons() {
-	goButton.disabled = true
-	goDayButton.disabled = true
+function disableInteractiveBits() {
+	_disableEnable(true)
 }
 
-function enableRunButtons() {
-	goButton.disabled = false
-	goDayButton.disabled = false
+function enableInteractiveBits() {
+	_disableEnable(false)
+}
+
+function _disableEnable(disable) {
+	for (const query of ['button', 'input', 'select', 'textarea']) {
+		for (const element of document.querySelectorAll(query)) {
+			if (element !== lights) {
+				element.disabled = disable
+			}
+		}
+	}
 }
 
 function changeDemo(select) {
