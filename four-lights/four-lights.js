@@ -1,6 +1,15 @@
 'use strict'
 /* exported go goDay colour delay changeDemo changeSweep */
 
+//
+// TODO
+//
+
+// - goDay() starts with the current time (whatever it is)
+// - disable all the UI first
+// - current time should be toggle, not checkbox?
+// - time sweep range
+
 
 //
 // Config
@@ -23,12 +32,16 @@ for (var i = 255; i > 0; i = i - 1) {
 	delay(10);
 }`,
 	'Simple if': `
-if (time < 1200) {
+if (hour() < 12) {
 	colour(255, 0, 0)
 } else {
 	colour(0, 0, 255)
 }`
 }
+
+const defaultHour = 16
+const defaultMinute = 42
+let stepDelay = 10
 
 const lights = document.getElementById('lights')
 const codeInput = document.getElementById('code')
@@ -36,20 +49,43 @@ const sampleSelect = document.getElementById('demos')
 const goButton = document.getElementById('run')
 const goDayButton = document.getElementById('run-day')
 
-const defaultLightsValue = '1642'
-
 
 //
 // State
 //
 
 const steps = []
-let stepDelay = 10
 let stepIndex
 
 // Keep track of the time that the code sees
-let hour
-let minute
+let _hour
+let _minute
+
+function setTime(hour, minute) {
+	_hour = hour
+	_minute = minute
+}
+
+function setDefaultTime() {
+	_hour = defaultHour
+	_minute = defaultMinute
+}
+
+function updateLightsValue() {
+	_displayCore(_hour, _minute)
+}
+
+function display(hour, minute) {
+	_displayCore(hour, minute)
+}
+
+function _displayCore(hour, minute) {
+	let hourString = String(hour)
+	let minuteString = String(minute)
+	if (hourString.length === 1) hourString = '0' + hourString
+	if (minuteString.length === 1) minuteString = '0' + minuteString
+	lights.value = hourString + minuteString
+}
 
 
 //
@@ -69,6 +105,7 @@ function go() {
 		enableRunButtons()
 		return
 	}
+
 	playback()  // play back the results of the run slowly
 }
 
@@ -91,10 +128,8 @@ function goDay() {
 	// Now actually run it
 	for (let loopHour = 0; loopHour < 24; loopHour++) {
 		for (let loopMinute = 0; loopMinute < 60; loopMinute++) {
-			hour = loopHour
-			minute = loopMinute
-			let time = String(hour) + minute
-			if (time.length < 4) time = '0' + time
+			setTime(loopHour, loopMinute)
+			// No need to update display
 			try {
 				eval(codeToRun)
 			} catch (error) {
@@ -115,16 +150,8 @@ function playback() {
 }
 
 function playStep() {
-	console.log(stepIndex, steps[stepIndex])
-	if (stepIndex <= steps.length) {
-		// Padding
-		// FIXME do this elsewhere
-		if (time < 1000) {
-			lights.value = '0'
-		} else {
-			lights.value = ''
-		}
-		lights.value += steps[stepIndex].time
+	if (stepIndex < steps.length) {
+		display(steps[stepIndex].hour, steps[stepIndex].minute)
 		lights.style.color = steps[stepIndex].colour
 		stepIndex++
 		setTimeout(playStep, stepDelay)
@@ -155,12 +182,11 @@ function changeDemo(select) {
 function changeSweep(checkbox) {
 	if (checkbox.checked) {
 		const now = new Date()
-		const hours = now.getHours()
-		const minutes = now.getMinutes()
-		const time = String(hours) + minutes
-		lights.value = time
+		setTime(now.getHours(), now.getMinutes())
+		updateLightsValue()
 	} else {
-		lights.value = defaultLightsValue
+		setDefaultTime()
+		updateLightsValue()
 	}
 }
 
@@ -179,6 +205,9 @@ function rgbToHex(r, g, b) {
 //
 // Called directly user code
 //
+
+const hour = () => _hour      // eslint-disable-line no-unused-vars
+const minute = () => _minute  // eslint-disable-line no-unused-vars
 
 function colour(r, g, b) {
 	const checks = {
@@ -210,7 +239,8 @@ function colour(r, g, b) {
 	const hex = rgbToHex(r, g, b)
 
 	steps.push({
-		'time': time,
+		'hour': _hour,
+		'minute': _minute,
 		'colour': hex
 	})
 }
@@ -244,8 +274,8 @@ function init() {
 	}
 
 	codeInput.value = demoCode['One loop'].slice(1)
-	lights.value = defaultLightsValue
-	// time = parseInt(defaultLightsValue)  // time as seen by the code
+	setDefaultTime()
+	updateLightsValue()
 }
 
 init()
