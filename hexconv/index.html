@@ -61,7 +61,7 @@ layout: null
 				// Ask for a decimal number
 				var num;
 				do {
-					num = Number(prompt("Please enter a number (0-" + 
+					num = Number(prompt("Please enter a number (0-" +
 						(Math.pow(2, LIMIT)-1) + ')'));
 				} while( !(num >= 0 && num < Math.pow(2, LIMIT)) )
 				gen_core(num);
@@ -91,7 +91,7 @@ layout: null
 				current_number = num;
 
 				// Debugging info
-				/*document.getElementById('lbl_debug').innerHTML = 
+				/*document.getElementById('lbl_debug').innerHTML =
 					num + ' ' + num.toString(2) + ' ' + num.toString(16);*/
 
 				// Enable the textboxen and buttons...
@@ -118,7 +118,6 @@ layout: null
 				}
 			}
 		</script>
-		{% include track.html %}
 	</head>
 	<body>
 		<div id='main'>
