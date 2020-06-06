@@ -25,90 +25,6 @@ title: Tweet Drafter
 
       {% include footer.css %}
     </style>
-    <script>
-      // Size limits info: https://dev.twitter.com/blog/upcoming-tco-changes
-      var TWEET_LENGTH = 140;
-      var LEN_MEDIA = 22;
-      var LEN_HTTP = 22;
-      var LEN_HTTPS = 23;
-
-      var contains_media = false;
-      var previous_tweet_text = '';
-      var previous_url_count = 0;
-
-      // Trigger an update when the media checkbox is toggled
-      function media_toggle() {
-        contains_media = !contains_media;
-        keyed(document.getElementById("draft"), true);
-      }
-
-      // Update the remaining character count, either because a key was
-      // pressed, or the media toggle was activated.
-      // Arguments:
-      //  - draft: reference to the element that contains the draft
-      //  - toggle: boolean indicating if the toggle was switched
-      function keyed(draft, toggled) {
-        var url_regex = /(https?:\/\/[^\s]+)/g;
-        var match;
-        var char_count_e = document.getElementById("char_count");
-        var url_count_e = document.getElementById("url_count");
-        var remaining = 0;
-        var url_count = 0;
-
-        // Protect against keypresses that don't change the string
-        if( !toggled && draft.value == previous_tweet_text ) {
-          return
-        }
-        previous_tweet_text = draft.value;
-
-        // Get base length, taking media into account
-        remaining = TWEET_LENGTH - draft.value.length;
-        if( contains_media ) {
-          remaining -= LEN_MEDIA;
-        }
-
-        // Find URLs and begin updating match number
-        match = draft.value.match(url_regex);
-        if( match ) {
-          for( var i = 0; i < match.length; i++ ) {
-            // Swap actual length of link in textarea for "shortened" version
-            var url = match[i];
-            remaining += url.length;
-            switch( url[4] ) {
-              case ':':  remaining -= LEN_HTTP;
-                    break;
-              case 's':  remaining -= LEN_HTTPS;
-                    break;
-              default:  alert("Something borked horribly with: '" + url + "'");
-            }
-          }
-          url_count = match.length;
-        } else {
-          url_count = 0;
-        }
-
-        // Should we update the link count?
-        // (We don't want to change a live region to what it was already.)
-        if( url_count != previous_url_count ) {
-          url_count_e.innerHTML = url_count;
-          previous_url_count = url_count;
-        }
-
-        // Update character count
-        // We update only the character/link counts, rather than the whole
-        // text in the live region <div>s.
-        // However, NVDA doesn't support aria-atomic, which means that to get
-        // it to announce the whole "x links in your tweet" or count <div>,
-        // we would have to update the whole text, not just that which
-        // changed.  However this would be too ugly a hack; awaiting fix.
-        char_count_e.innerHTML = remaining;
-        if( remaining < 0 ) {
-          char_count_e.className = "ohnoes";
-        } else {
-          char_count_e.className = null;
-        }
-      }
-    </script>
   </head>
   <body>
     <header>
@@ -142,7 +58,7 @@ title: Tweet Drafter
         <span id="url_count">0</span> links in your tweet
       </div>
       <div role="status" aria-live="polite" aria-atomic="true">
-        <span id="char_count">140</span> characters remaining
+        <span id="char_count"></span> characters remaining
       </div>
 
       <aside>
@@ -159,7 +75,93 @@ title: Tweet Drafter
           <li>It will count links that don't have a space before them.</li>
         </ul>
       </aside>
-    </main>
-    {% include footer.html %}
+	</main>
+	{% include footer.html %}
+	<script>
+		// Size limits info: https://dev.twitter.com/blog/upcoming-tco-changes
+		var TWEET_LENGTH = 280;
+		var LEN_MEDIA = 22;
+		var LEN_HTTP = 22;
+		var LEN_HTTPS = 23;
+
+		var contains_media = false;
+		var previous_tweet_text = '';
+		var previous_url_count = 0;
+
+		// Trigger an update when the media checkbox is toggled
+		function media_toggle() {
+			contains_media = !contains_media;
+			keyed(document.getElementById("draft"), true);
+		}
+
+		// Update the remaining character count, either because a key was
+		// pressed, or the media toggle was activated.
+		// Arguments:
+		//  - draft: reference to the element that contains the draft
+		//  - toggle: boolean indicating if the toggle was switched
+		function keyed(draft, toggled) {
+			var url_regex = /(https?:\/\/[^\s]+)/g;
+			var match;
+			var char_count_e = document.getElementById("char_count");
+			var url_count_e = document.getElementById("url_count");
+			var remaining = 0;
+			var url_count = 0;
+
+			// Protect against keypresses that don't change the string
+			if( !toggled && draft.value == previous_tweet_text ) {
+				return
+			}
+			previous_tweet_text = draft.value;
+
+			// Get base length, taking media into account
+			remaining = TWEET_LENGTH - draft.value.length;
+			if( contains_media ) {
+				remaining -= LEN_MEDIA;
+			}
+
+			// Find URLs and begin updating match number
+			match = draft.value.match(url_regex);
+			if( match ) {
+				for( var i = 0; i < match.length; i++ ) {
+					// Swap actual length of link in textarea for "shortened" version
+					var url = match[i];
+					remaining += url.length;
+					switch( url[4] ) {
+						case ':':  remaining -= LEN_HTTP;
+							break;
+						case 's':  remaining -= LEN_HTTPS;
+							break;
+						default:  alert("Something borked horribly with: '" + url + "'");
+					}
+				}
+				url_count = match.length;
+			} else {
+				url_count = 0;
+			}
+
+			// Should we update the link count?
+			// (We don't want to change a live region to what it was already.)
+			if( url_count != previous_url_count ) {
+				url_count_e.innerHTML = url_count;
+				previous_url_count = url_count;
+			}
+
+			// Update character count
+			// We update only the character/link counts, rather than the whole
+			// text in the live region <div>s.
+			// However, NVDA doesn't support aria-atomic, which means that to get
+			// it to announce the whole "x links in your tweet" or count <div>,
+			// we would have to update the whole text, not just that which
+			// changed.  However this would be too ugly a hack; awaiting fix.
+			char_count_e.innerHTML = remaining;
+			if( remaining < 0 ) {
+				char_count_e.className = "ohnoes";
+			} else {
+				char_count_e.className = null;
+			}
+		}
+
+		document.getElementById('char_count').innerText = TWEET_LENGTH;
+	</script>
   </body>
 </html>
